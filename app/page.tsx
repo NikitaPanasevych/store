@@ -24,7 +24,7 @@ export default function Home() {
 						rutrum. Maecenas dignissim at magna ut vestibulum. Nulla tellus lorem, dapibus eget ex eleifend,
 						fermentum feugiat lectus. In ultrices suscipit lorem in tincidunt.
 					</p>
-					<div>
+					<div className={styles.home__element__description__button}>
 						<Button>
 							<a href="">Documentation</a>
 						</Button>
