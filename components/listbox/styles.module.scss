@@ -1,0 +1,15 @@
+.listbox{
+    height: 3rem;
+    min-width: 10rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    options{
+
+    }
+}

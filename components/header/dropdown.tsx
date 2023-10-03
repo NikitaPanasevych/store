@@ -25,8 +25,10 @@ export const Dropdown = (props: DropdownProps) => {
 			{show === 'show' ? (
 				<OutsideAlerter setShow={setShow}>
 					<div className={styles.category__list}>
-						{options.slice(0, 6).map((option) => (
-							<div className={styles.category__list__element}>{option}</div>
+						{options.slice(0, 6).map((option, index) => (
+							<div key={index} className={styles.category__list__element}>
+								{option}
+							</div>
 						))}
 					</div>
 				</OutsideAlerter>

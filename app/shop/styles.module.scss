@@ -3,20 +3,8 @@
     padding: 15rem calc((100vw - 1300px) / 2) 5rem;
 
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto;
-    grid-gap: 2rem;
-    grid-template-areas: 
-    "filters main"
-    ;
-
-    &__filters{
-        grid-area: filters;
-        border: 1px solid black;
-    }
 
     &__main{
-        grid-area: main;
         border: 1px solid red;
         display: flex;
         flex-direction: column;
@@ -41,11 +29,48 @@
         &__sort{
             width: 100%;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 3rem;
 
             &__pagination{
                 display: flex;
                 align-items: center;
+                gap: 1rem;
             }
         }
+    }
+}
+
+.filter{
+    width: 100%;
+    &__name{
+        width: 100%;
+        height: 3.5rem;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    &__section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__element{
+            width: 100%;
+            height: 3rem;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: .5rem;
+            font-size: 1.6rem;
+            font-weight: 500;
+            padding-left: 3rem;
+        }
+
     }
 }

@@ -1,0 +1,31 @@
+@import "../../styles/base.scss";
+
+.pager{
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    font-size: 1.4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+
+    background-color: none;
+    border: 1px solid $dark;
+
+    transition: all .2s ease-in-out;
+
+    &:hover{
+        background-color: $dark;
+        color: $light;
+        cursor: pointer;
+    }
+
+    &__active{
+        background-color: $dark;
+        color: $light;
+    }
+}

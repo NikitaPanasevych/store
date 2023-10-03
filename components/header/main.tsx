@@ -1,19 +1,10 @@
-'use client';
-
 import styles from './styles.module.scss';
 import { BsFillBagFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { AppContext } from '@/context/app.context';
-import { useContext } from 'react';
+import MyDrawer from '../drawer';
 import { Cart } from '../cart';
 
 const Main = () => {
-	const { miniCartOpen, setMiniCart } = useContext(AppContext);
-
-	const clickHandler = () => {
-		setMiniCart(!miniCartOpen);
-	};
-
 	return (
 		<>
 			<div className={styles.header}>
@@ -28,12 +19,13 @@ const Main = () => {
 					<div>
 						<AiOutlineSearch />
 					</div>
-					<div onClick={clickHandler}>
-						<BsFillBagFill />
+					<div>
+						<MyDrawer anchor="right" buttonChildren={<BsFillBagFill />}>
+							<Cart />
+						</MyDrawer>
 					</div>
 				</div>
 			</div>
-			{miniCartOpen && <Cart />}
 		</>
 	);
 };
