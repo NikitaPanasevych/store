@@ -6,8 +6,6 @@ import { Product } from './product';
 import styles from './styles.module.scss';
 
 export default function Shop() {
-	const data = [8, 16, 32];
-
 	return (
 		<main className={styles.shop}>
 			<div className={styles.shop__main}>
@@ -23,7 +21,7 @@ export default function Shop() {
 						</MyDrawer>
 					</div>
 					<div className={styles.shop__main__sort__pagination}>
-						{data.map((item, index) => {
+						{([8, 16, 32] as const).map((item, index) => {
 							return <PagerLinks key={index} quantity={item} />;
 						})}
 					</div>
@@ -34,6 +32,7 @@ export default function Shop() {
 						quantity={11}
 						price={100}
 						image="https://via.placeholder.com/300x300"
+						categories={['Red']}
 					/>
 				</div>
 			</div>

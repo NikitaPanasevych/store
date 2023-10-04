@@ -1,12 +1,6 @@
+import { ProductProps } from '@/models/shop.product';
 import Image from 'next/image';
 import styles from './styles.module.scss';
-
-export interface ProductProps {
-	name: string;
-	quantity: number;
-	price: number;
-	image: string;
-}
 
 export const Product = (props: ProductProps) => {
 	const { name, quantity, price, image } = props;
