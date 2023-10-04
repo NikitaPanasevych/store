@@ -1,11 +1,10 @@
 .shop{
     min-height: 100vh;
-    padding: 15rem calc((100vw - 1300px) / 2) 5rem;
+    padding: 15rem calc((100vw - 1450px) / 2);
 
     display: grid;
 
     &__main{
-        border: 1px solid red;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -33,11 +32,26 @@
             align-items: center;
             height: 3rem;
 
+            &__section{
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+
             &__pagination{
                 display: flex;
                 align-items: center;
                 gap: 1rem;
             }
+        }
+        &__listing{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            justify-items: center;
+            grid-gap: 2rem;
+            padding: 2.5rem 0;
+
         }
     }
 }
@@ -72,5 +86,100 @@
             padding-left: 3rem;
         }
 
+    }
+}
+
+.button{
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: .5rem 1rem;
+    min-width: 10rem;
+    height: 3rem;
+    border-radius: 5px;
+    border: 1px solid $dark;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    &:hover{
+        background-color: $dark;
+        color: $light;
+    }
+}
+
+.product{
+    border: 1px solid $dark;
+    height: 45rem;
+    width: 30rem;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    
+
+    &__image{
+        width: 100%;
+        height: auto;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__description{
+        width: 100%;
+        height: 8rem;
+        max-height: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0rem 2rem;
+        text-align: center;
+
+        &__name{
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: .25rem 0;
+            word-break: normal;
+        }
+        &__quantity{
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: .25rem 0;
+        }
+    }
+
+    &__price{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0rem 2rem;
+
+
+        &__value{
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: .25rem 0;
+        }
+        &__addbtn{
+            width: 100%;
+            height: 3rem;
+            background-color: $dark;
+            border: 1px solid $light;
+            color: $light;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 600;
+            transition: all .3s ease-in-out;
+            &:hover{
+                background-color: $primary;
+                
+            }
+        }
+    }
+
+    &:hover{
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
     }
 }

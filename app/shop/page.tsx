@@ -2,6 +2,7 @@ import MyDrawer from '@/components/drawer';
 import { Listbox } from '@/components/listbox';
 import { PagerLinks } from '@/UI/pager-links';
 import { Filters } from './filters';
+import { Product } from './product';
 import styles from './styles.module.scss';
 
 export default function Shop() {
@@ -15,9 +16,9 @@ export default function Shop() {
 					<hr />
 				</div>
 				<div className={styles.shop__main__sort}>
-					<div className={styles.shop__main__sort__dropdown}>
+					<div className={styles.shop__main__sort__section}>
 						{<Listbox name="Default Sort" options={['Default Sort', 'Price', 'Name', 'Rating']} />}
-						<MyDrawer anchor="left" buttonChildren={<div>Categories</div>}>
+						<MyDrawer anchor="left" buttonChildren={<div className={styles.button}>Filters</div>}>
 							<Filters />
 						</MyDrawer>
 					</div>
@@ -27,7 +28,14 @@ export default function Shop() {
 						})}
 					</div>
 				</div>
-				<div className={styles.shop__main__listing}>{/* product component */}</div>
+				<div className={styles.shop__main__listing}>
+					<Product
+						name="Chambertin Clos de Beze Armand Rousseau 2008"
+						quantity={11}
+						price={100}
+						image="https://via.placeholder.com/300x300"
+					/>
+				</div>
 			</div>
 		</main>
 	);
