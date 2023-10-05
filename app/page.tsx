@@ -1,20 +1,11 @@
-'use client';
-
 import Button from '@/UI/button';
 import Image from 'next/image';
 import styles from './styles.module.scss';
-import axios from 'axios';
 import { Post } from '@/models/home.posts';
+import { getPosts } from '@/lib/functions';
 
 export default async function Home() {
-	const posts = await axios
-		.get('http://localhost:3000/api/home')
-		.then((res) => {
-			return res.data;
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	const posts = await getPosts();
 
 	return (
 		<main className={styles.home}>

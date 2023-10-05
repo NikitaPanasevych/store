@@ -1,11 +1,16 @@
 import MyDrawer from '@/components/drawer';
 import { Listbox } from '@/components/listbox';
+import { getProducts } from '@/lib/functions';
+import { ProductProps } from '@/models/shop.product';
 import { PagerLinks } from '@/UI/pager-links';
 import { Filters } from './filters';
 import { Product } from './product';
 import styles from './styles.module.scss';
 
-export default function Shop() {
+export default async function Shop() {
+	const products = await getProducts();
+	console.log(products);
+
 	return (
 		<main className={styles.shop}>
 			<div className={styles.shop__main}>
@@ -27,13 +32,17 @@ export default function Shop() {
 					</div>
 				</div>
 				<div className={styles.shop__main__listing}>
-					<Product
-						name="Chambertin Clos de Beze Armand Rousseau 2008"
-						quantity={11}
-						price={100}
-						image="https://via.placeholder.com/300x300"
-						categories={['Red']}
-					/>
+					{products?.data.map((product: ProductProps) => {
+						return (
+							<Product
+								name={product.name}
+								quantity={product.quantity}
+								price={product.price}
+								image={product.image}
+								categories={product.categories}
+							/>
+						);
+					})}
 				</div>
 			</div>
 		</main>
