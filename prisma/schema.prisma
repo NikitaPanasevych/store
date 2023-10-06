@@ -18,16 +18,32 @@ model Post {
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String
   price       Int
   image       String
   description String
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Type    @relation(fields: [categoryId], references: [id])
   categoryId  String
+  country     Country @relation(fields: [countryId], references: [id])
+  countryId   String
+  grape       Grape   @relation(fields: [grapeId], references: [id])
+  grapeId     String
 }
 
-model Category {
+model Type {
+  id       String    @id @default(cuid())
+  name     String
+  products Product[]
+}
+
+model Country {
+  id       String    @id @default(cuid())
+  name     String
+  products Product[]
+}
+
+model Grape {
   id       String    @id @default(cuid())
   name     String
   products Product[]

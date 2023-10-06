@@ -9,7 +9,6 @@ import styles from './styles.module.scss';
 
 export default async function Shop() {
 	const products = await getProducts();
-	console.log(products);
 
 	return (
 		<main className={styles.shop}>
