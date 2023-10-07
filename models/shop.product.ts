@@ -6,7 +6,6 @@ export class ProductProps {
 	categories: string[];
 	alcohol: number;
 	volume: number;
-	link: string;
 
 	constructor(
 		name: string,
@@ -22,13 +21,8 @@ export class ProductProps {
 		this.price = price;
 		this.image = image;
 		this.categories = categories;
-		this.link = this.generateLink();
 		this.alcohol = alcohol;
 		this.volume = volume;
-	}
-
-	public generateLink() {
-		return (this.link = this.name.replace(/ /g, '-'));
 	}
 }
 
