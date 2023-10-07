@@ -6,6 +6,7 @@ import { getPosts } from '@/lib/functions';
 
 export default async function Home() {
 	const posts = await getPosts();
+	console.log(posts);
 
 	return (
 		<main className={styles.home}>

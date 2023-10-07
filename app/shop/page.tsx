@@ -39,6 +39,8 @@ export default async function Shop() {
 								price={product.price}
 								image={product.image}
 								categories={product.categories}
+								link={product.link}
+								generateLink={product.generateLink}
 							/>
 						);
 					})}

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 
 export const Product = (props: ProductProps) => {
-	const { name, quantity, price, image } = props;
+	const { name, quantity, price, image, categories, link } = props;
 
 	return (
 		<div className={styles.product}>

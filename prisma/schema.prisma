@@ -20,9 +20,12 @@ model Post {
 model Product {
   id          String  @id @default(cuid())
   name        String
-  price       Int
+  price       Float
   image       String
   description String
+  year        Int
+  alcohol     Float
+  quantity    Int
   category    Type    @relation(fields: [categoryId], references: [id])
   categoryId  String
   country     Country @relation(fields: [countryId], references: [id])
