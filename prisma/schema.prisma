@@ -26,6 +26,7 @@ model Product {
   year        Int
   alcohol     Float
   quantity    Int
+  volume      Float
   category    Type    @relation(fields: [categoryId], references: [id])
   categoryId  String
   country     Country @relation(fields: [countryId], references: [id])

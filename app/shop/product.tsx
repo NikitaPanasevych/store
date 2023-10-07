@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 
 export const Product = (props: ProductProps) => {
-	const { name, quantity, price, image, categories, link } = props;
+	const { name, quantity, price, image, volume } = props;
 
 	return (
 		<div className={styles.product}>
@@ -13,6 +13,7 @@ export const Product = (props: ProductProps) => {
 			<div className={styles.product__description}>
 				<div className={styles.product__description__name}>{name}</div>
 				<div className={styles.product__description__quantity}>({quantity}) Available</div>
+				<div className={styles.product__description__volume}>{volume} ml</div>
 			</div>
 			<div className={styles.product__price}>
 				<div className={styles.product__price__value}>$ {price}</div>
