@@ -19,7 +19,7 @@ model Post {
 
 model Product {
   id          String  @id @default(cuid())
-  name        String
+  name        String  @unique
   price       Float
   image       String
   description String

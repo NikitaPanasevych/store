@@ -1,9 +1,9 @@
-import { ProductRequest } from '@/models/shop.product';
+import { ProductsRequest } from '@/models/shop.product';
 import { NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 import prisma from '../../../lib/prisma';
 
-export async function GET(res: NextApiResponse<ProductRequest>) {
+export async function GET(res: NextApiResponse<ProductsRequest>) {
 	const products = await prisma.product.findMany();
 	let json_response = {
 		status: 'success',

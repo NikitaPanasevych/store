@@ -26,7 +26,12 @@ export class ProductProps {
 	}
 }
 
-export interface ProductRequest {
+export interface ProductsRequest {
 	status: string;
 	data: ProductProps[];
+}
+
+export interface ProductRequest {
+	status: string;
+	data: ProductProps;
 }
