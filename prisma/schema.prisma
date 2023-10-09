@@ -18,37 +18,38 @@ model Post {
 }
 
 model Product {
-  id          String  @id @default(cuid())
-  name        String  @unique
-  price       Float
-  image       String
-  description String
-  year        Int
-  alcohol     Float
-  quantity    Int
-  volume      Float
-  category    Type    @relation(fields: [categoryId], references: [id])
-  categoryId  String
-  country     Country @relation(fields: [countryId], references: [id])
-  countryId   String
-  grape       Grape   @relation(fields: [grapeId], references: [id])
-  grapeId     String
+  id           String  @id @default(cuid())
+  name         String  @unique
+  price        Float
+  image        String
+  description  String
+  year         Int
+  alcohol      Float
+  quantity     Int
+  volume       Float
+  category     Type    @relation(fields: [categoryName], references: [name])
+  categoryId   String
+  categoryName String
+  country      Country @relation(fields: [countryName], references: [name])
+  countryName  String
+  grape        Grape   @relation(fields: [grapeName], references: [name])
+  grapeName    String
 }
 
 model Type {
   id       String    @id @default(cuid())
-  name     String
+  name     String    @unique
   products Product[]
 }
 
 model Country {
   id       String    @id @default(cuid())
-  name     String
+  name     String    @unique
   products Product[]
 }
 
 model Grape {
   id       String    @id @default(cuid())
-  name     String
+  name     String    @unique
   products Product[]
 }
