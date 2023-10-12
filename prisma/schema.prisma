@@ -28,7 +28,6 @@ model Product {
   quantity     Int
   volume       Float
   category     Type    @relation(fields: [categoryName], references: [name])
-  categoryId   String
   categoryName String
   country      Country @relation(fields: [countryName], references: [name])
   countryName  String
