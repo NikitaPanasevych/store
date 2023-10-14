@@ -1,4 +1,4 @@
-import getProduct from '@/lib/functions/getProduct';
+import getProduct from '@/lib/services/getProduct';
 import styles from './styles.module.scss';
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {

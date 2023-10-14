@@ -1,12 +1,13 @@
+'use client';
+
 import Button from '@/UI/button';
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import { Post } from '@/models/home.posts';
-import { getPosts } from '@/lib/functions';
+import { getPosts } from '@/lib/services';
 
 export default async function Home() {
 	const posts = await getPosts();
-	console.log(posts);
 
 	return (
 		<main className={styles.home}>

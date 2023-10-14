@@ -1,6 +1,6 @@
 import MyDrawer from '@/components/drawer';
 import { Listbox } from '@/components/listbox';
-import { getProducts } from '@/lib/functions';
+import { getProducts } from '@/lib/services';
 import { ProductProps } from '@/models/shop.product';
 import { PagerLinks } from '@/UI/pager-links';
 import { Filters } from './filters';
@@ -39,8 +39,7 @@ export default async function Shop() {
 								price={product.price}
 								image={product.image}
 								categories={product.categories}
-								link={product.link}
-								generateLink={product.generateLink}
+								key={product.id}
 							/>
 						);
 					})}
