@@ -13,22 +13,12 @@ interface Props {
 	errors?: any;
 	touched?: any;
 	btnText: string;
-	isLoading: boolean;
 	handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	handleBlur: (e: any) => void;
 }
 
-export const Form = ({
-	config,
-	errors,
-	touched,
-	btnText,
-	isLoading,
-	handleSubmit,
-	handleChange,
-	handleBlur,
-}: Props) => {
+const Form = ({ config, errors, touched, btnText, handleSubmit, handleChange, handleBlur }: Props) => {
 	return (
 		<form onSubmit={handleSubmit} method="POST" autoComplete="off">
 			<fieldset>
@@ -41,11 +31,14 @@ export const Form = ({
 						handleChange={handleChange}
 						handleBlur={handleBlur}
 						readonly={item.readonly}
-					>
-						{item.label}
-					</Input>
+						errors={errors ? errors[item.label] : null}
+						touched={touched ? touched[item.label] : null}
+					/>
 				))}
 			</fieldset>
+			<button type="submit">{btnText}</button>
 		</form>
 	);
 };
+
+export default Form;

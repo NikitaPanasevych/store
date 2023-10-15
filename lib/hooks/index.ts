@@ -1,1 +1,1 @@
-export { default as useType } from './use-type';
+export { default as useCreatePost } from './use-create-post';

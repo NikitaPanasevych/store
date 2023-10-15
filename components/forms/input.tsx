@@ -8,14 +8,15 @@ interface InputProps {
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	handleBlur: (e: any) => void;
 	errors?: any;
-	children?: React.ReactNode;
+	touched?: any;
 }
 
-export const Input = ({ value, label, type, readonly, handleChange, handleBlur, errors, children }: InputProps) => {
+export const Input = ({ value, label, type, readonly, handleChange, handleBlur, errors, touched }: InputProps) => {
 	return (
 		<>
-			<label htmlFor={label}>{children}</label>
+			<label htmlFor={label}>{label}</label>
 			<input
+				id={label}
 				readOnly={readonly}
 				name={label}
 				value={value}
@@ -23,6 +24,7 @@ export const Input = ({ value, label, type, readonly, handleChange, handleBlur, 
 				onBlur={handleBlur}
 				type={type}
 			/>
+			{errors && touched ? <p>{errors}</p> : null}
 		</>
 	);
 };
