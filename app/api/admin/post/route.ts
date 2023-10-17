@@ -12,25 +12,25 @@ cloudinary.config({
 export async function POST(req: Request) {
 	const data: Post = await req.json();
 	const { title, content, image } = data;
+	const options = {
+		use_filename: true,
+		unique_filename: false,
+		overwrite: true,
+		transformation: [{ width: 1000, height: 752, crop: 'scale' }],
+	};
 
 	if (!title || !content || !image) return NextResponse.json({ message: 'Please fill all fields' });
 
 	try {
-		const options = {
-			use_filename: true,
-			unique_filename: false,
-			overwrite: true,
-			transformation: [{ width: 1000, height: 752, crop: 'scale' }],
-		};
-		console.log(image, options);
-		try {
-			const result = await cloudinary.uploader.upload(image, options);
-			console.log(result);
-		} catch (err) {
-			console.log(err);
-		}
+		console.log(image);
+		const result = await cloudinary.uploader.upload(image, options);
+		console.log(result);
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
 
-		/*const post = await prisma.post.create({
+	/*const post = await prisma.post.create({
 			data: {
 				title,
 				content,
@@ -39,7 +39,4 @@ export async function POST(req: Request) {
 		});
 		return NextResponse.json({ message: 'Post created successfully', post });
 	}*/
-	} catch (err) {
-		return NextResponse.json({ message: 'Error', err });
-	}
 }
