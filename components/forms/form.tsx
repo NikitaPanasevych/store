@@ -6,6 +6,7 @@ interface Config {
 	type: string;
 	readonly?: boolean;
 	label: string;
+	categoryType?: string;
 }
 
 interface Props {

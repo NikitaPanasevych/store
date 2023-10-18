@@ -1,11 +1,11 @@
-import { Grape } from '@/models/shop.grapes';
+import { Categories } from '@/models/shop.categories';
 import categoriesSchema from '@/schemas/categories.schema';
-import productSchema from '@/schemas/product.schema';
+
 import { useFormik } from 'formik';
 
-export default function useCreateGrape() {
-	const onSubmit = async (values: Grape) => {
-		console.log(values);
+export default function useCreateCategory(name: string | undefined) {
+	const onSubmit = async (values: Categories) => {
+		console.log(values, name);
 	};
 
 	const { values, errors, touched, handleChange, handleSubmit, handleBlur } = useFormik({

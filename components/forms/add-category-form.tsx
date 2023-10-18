@@ -1,8 +1,13 @@
-import { useCreateGrape } from '@/lib/hooks';
+import { useCreateCategory } from '@/lib/hooks';
 import Form from './form';
 
-export default function GrapeForm() {
-	const { values, errors, touched, handleChange, handleSubmit, handleBlur } = useCreateGrape();
+export interface CategoriesFormProps {
+	name?: string | undefined;
+}
+
+export default function CategoriesForm(props: CategoriesFormProps) {
+	const { name } = props;
+	const { values, errors, touched, handleChange, handleSubmit, handleBlur } = useCreateCategory(name);
 
 	const config = [
 		{
@@ -13,13 +18,14 @@ export default function GrapeForm() {
 			handleChange,
 			errors: errors.name,
 			touched: touched.name,
+			categoryType: name,
 		},
 	];
 
 	return (
 		<Form
 			config={config}
-			btnText="Create a new grape group"
+			btnText={`Add new ${name}`}
 			handleSubmit={handleSubmit}
 			handleChange={handleChange}
 			handleBlur={handleBlur}

@@ -1,8 +1,6 @@
 'use client';
 
 import { Post } from '@/models/home.posts';
-import { Country } from '@/models/shop.countries';
-import { Grape } from '@/models/shop.grapes';
 import { ProductProps } from '@/models/shop.product';
 import { Categories } from '@/models/shop.categories';
 import {
@@ -30,9 +28,10 @@ import Button from '@/UI/button';
 import AppModal from '@/components/modal';
 import PostForm from '@/components/forms/add-post-form';
 import ProductForm from '@/components/forms/add-product-form';
-import GrapeForm from '@/components/forms/add-grape-form';
+import GrapeForm from '@/components/forms/add-category-form';
+import CategoriesForm from '@/components/forms/add-category-form';
 
-export type Content = Post | ProductProps | Categories | Country | Grape;
+export type Content = Post | ProductProps | Categories;
 
 export interface NestedTableProps {
 	content: Content[];
@@ -65,9 +64,9 @@ export const NestedTable = (props: NestedTableProps) => {
 							<PostForm />
 						) : name === 'products' ? (
 							<ProductForm />
-						) : name === 'grapes' ? (
-							<GrapeForm />
-						) : null}
+						) : (
+							<CategoriesForm name={name} />
+						)}
 					</AppModal>
 				</Typography>
 				<TableContainer>
