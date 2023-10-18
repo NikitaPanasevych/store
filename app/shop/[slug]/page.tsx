@@ -5,6 +5,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 	const { slug } = params;
 
 	const product = await getProduct(slug);
+	console.log(product);
 
 	const { name, description, price, images, year, alcohol, quantity, volume } = product;
 

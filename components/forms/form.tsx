@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent } from 'react';
 import { Input } from './input';
 
 interface Config {
-	value: string;
+	value: string | number | undefined;
 	type: string;
 	readonly?: boolean;
 	label: string;

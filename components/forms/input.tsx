@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 
 interface InputProps {
-	value: string;
+	value: string | number | undefined;
 	label: string;
 	type: string;
 	readonly?: boolean;

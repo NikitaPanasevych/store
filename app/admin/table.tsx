@@ -28,7 +28,8 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useState } from 'react';
 import Button from '@/UI/button';
 import AppModal from '@/components/modal';
-import PostForm from '@/components/forms/Add-post-form';
+import PostForm from '@/components/forms/add-post-form';
+import ProductForm from '@/components/forms/add-product-form';
 
 export type Content = Post | ProductProps | Types | Country | Grape;
 
@@ -52,15 +53,13 @@ export const NestedTable = (props: NestedTableProps) => {
 				<ListItemIcon>
 					<ArticleIcon />
 				</ListItemIcon>
-				<ListItemText primary={'Posts' + '(' + content.length + ')'} />
+				<ListItemText primary={name + '(' + content.length + ')'} />
 				{open ? <ExpandLess /> : <ExpandMore />}
 			</ListItemButton>
 			<Collapse in={open} timeout="auto" unmountOnExit>
 				<Typography variant="h4" gutterBottom component="div">
-					Add new post
-					<AppModal buttonIcon={<AddIcon />}>
-						<PostForm />
-					</AppModal>
+					Add new {name}
+					<AppModal buttonIcon={<AddIcon />}>{name === 'posts' ? <PostForm /> : <ProductForm />}</AppModal>
 				</Typography>
 				<TableContainer>
 					<Table>

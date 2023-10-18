@@ -2,11 +2,15 @@ export interface ProductProps {
 	id?: string;
 	name: string;
 	quantity: number;
+	description: string;
+	year: number;
 	price: number;
 	image: string;
-	categories: string[];
 	alcohol?: number;
 	volume?: number;
+	grape?: string;
+	country?: string;
+	category?: string;
 }
 
 export interface ProductsRequest {
