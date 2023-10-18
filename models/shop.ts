@@ -2,14 +2,14 @@ import { Post } from './home.posts';
 import { Country } from './shop.countries';
 import { Grape } from './shop.grapes';
 import { ProductProps } from './shop.product';
-import { Types } from './shop.types';
+import { Categories } from './shop.categories';
 
 export interface ShopRequest {
 	success: string;
 	data: {
 		posts: Post[];
 		products: ProductProps[];
-		types: Types[];
+		types: Categories[];
 		grapes: Grape[];
 		countries: Country[];
 	};

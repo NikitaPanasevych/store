@@ -4,7 +4,7 @@ import { Post } from '@/models/home.posts';
 import { Country } from '@/models/shop.countries';
 import { Grape } from '@/models/shop.grapes';
 import { ProductProps } from '@/models/shop.product';
-import { Types } from '@/models/shop.types';
+import { Categories } from '@/models/shop.categories';
 import {
 	Collapse,
 	List,
@@ -30,8 +30,9 @@ import Button from '@/UI/button';
 import AppModal from '@/components/modal';
 import PostForm from '@/components/forms/add-post-form';
 import ProductForm from '@/components/forms/add-product-form';
+import GrapeForm from '@/components/forms/add-grape-form';
 
-export type Content = Post | ProductProps | Types | Country | Grape;
+export type Content = Post | ProductProps | Categories | Country | Grape;
 
 export interface NestedTableProps {
 	content: Content[];
@@ -59,7 +60,15 @@ export const NestedTable = (props: NestedTableProps) => {
 			<Collapse in={open} timeout="auto" unmountOnExit>
 				<Typography variant="h4" gutterBottom component="div">
 					Add new {name}
-					<AppModal buttonIcon={<AddIcon />}>{name === 'posts' ? <PostForm /> : <ProductForm />}</AppModal>
+					<AppModal buttonIcon={<AddIcon />}>
+						{name === 'posts' ? (
+							<PostForm />
+						) : name === 'products' ? (
+							<ProductForm />
+						) : name === 'grapes' ? (
+							<GrapeForm />
+						) : null}
+					</AppModal>
 				</Typography>
 				<TableContainer>
 					<Table>

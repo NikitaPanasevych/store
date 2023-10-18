@@ -1,7 +1,4 @@
 import getShop from '@/lib/services/getShop';
-import { Post } from '@/models/home.posts';
-import { ProductProps } from '@/models/shop.product';
-import { Types } from '@/models/shop.types';
 import styles from './styles.module.scss';
 import { NestedTable } from './table';
 

@@ -1,4 +1,4 @@
 export interface Grape {
-	id: string;
+	id?: string;
 	name: string;
 }
