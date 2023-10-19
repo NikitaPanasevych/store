@@ -3,9 +3,16 @@ import categoriesSchema from '@/schemas/categories.schema';
 
 import { useFormik } from 'formik';
 
-export default function useCreateCategory(name: string | undefined) {
+export default function useCreateCategory(type: string | undefined) {
 	const onSubmit = async (values: Categories) => {
-		console.log(values, name);
+		const { name } = values;
+		await fetch(`/api/admin/create-category/${type}`, {
+			method: 'POST',
+			body: JSON.stringify({ name }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
 	};
 
 	const { values, errors, touched, handleChange, handleSubmit, handleBlur } = useFormik({
