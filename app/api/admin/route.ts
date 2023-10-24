@@ -1,22 +1,34 @@
-import { NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prisma';
+import { getAll } from '@/lib/queries/getAll';
+import { getAllCategories } from '@/lib/queries/getAllCategories';
+import { getCountries } from '@/lib/queries/getCountries';
+import { getGrapes } from '@/lib/queries/getGrapes';
+import { getTypes } from '@/lib/queries/getTypes';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
-	const posts = await prisma.post.findMany();
-	const products = await prisma.product.findMany();
-	const types = await prisma.type.findMany();
-	const grapes = await prisma.grape.findMany();
-	const countries = await prisma.country.findMany();
-	let json_response = {
-		status: 'success',
-		data: {
-			posts,
-			products,
-			types,
-			grapes,
-			countries,
-		},
+export async function GET(request: NextRequest) {
+	const param = request.nextUrl.searchParams.get('type');
+
+	const getResponse = (data: any) => {
+		return NextResponse.json({
+			status: 'success',
+			data,
+		});
 	};
-	return NextResponse.json(json_response);
+
+	if (param === 'type') {
+		const data = await getTypes();
+		return getResponse(data);
+	} else if (param === 'countries') {
+		const data = await getCountries();
+		return getResponse(data);
+	} else if (param === 'grapes') {
+		const data = await getGrapes();
+		return getResponse(data);
+	} else if (param === 'all') {
+		const data = await getAllCategories();
+		return getResponse(data);
+	} else {
+		const data = await getAll();
+		return getResponse(data);
+	}
 }

@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useContext } from 'react';
+import React from 'react';
 import { Categories } from './categories';
 import Main from './main';
 
