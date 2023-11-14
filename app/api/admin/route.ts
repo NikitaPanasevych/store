@@ -1,8 +1,8 @@
-import { getAll } from '@/lib/queries/getAll';
-import { getAllCategories } from '@/lib/queries/getAllCategories';
-import { getCountries } from '@/lib/queries/getCountries';
-import { getGrapes } from '@/lib/queries/getGrapes';
-import { getTypes } from '@/lib/queries/getTypes';
+import { getAll } from '@/lib/db-queries/getAll';
+import { getAllCategories } from '@/lib/db-queries/getAllCategories';
+import { getCountries } from '@/lib/db-queries/getCountries';
+import { getGrapes } from '@/lib/db-queries/getGrapes';
+import { getTypes } from '@/lib/db-queries/getTypes';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {

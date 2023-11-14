@@ -4,15 +4,17 @@ import { Dropdown } from './dropdown';
 import getCategory from '@/lib/services/getCategories';
 import { Categories } from '@/models/shop.categories';
 
-export const Categories = async () => {
-	const grapes = await getCategory('grapes');
-	const categories = await getCategory('categories');
-	const countries = await getCategory('countries');
+export const CategoriesComponent = async () => {
+	const categories = await getCategory('all');
+
+	console.log(categories.data);
+	let keys: string[] = Object.keys(categories.data);
+	let values: string[][] = Object.values(categories.data);
 
 	return (
 		<div className={styles.category}>
-			{categories.map((category: Categories, index: number) => (
-				<Dropdown key={index} name={category.name} options={category.name} />
+			{keys.map((key, index) => (
+				<Dropdown key={index} name={key} options={values[index]} />
 			))}
 			<div className={styles.category__element}>Full selection</div>
 		</div>
