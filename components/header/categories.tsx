@@ -7,7 +7,6 @@ import { Categories } from '@/models/shop.categories';
 export const CategoriesComponent = async () => {
 	const categories = await getCategory('all');
 
-	console.log(categories.data);
 	let keys: string[] = Object.keys(categories.data);
 	let values: string[][] = Object.values(categories.data);
 

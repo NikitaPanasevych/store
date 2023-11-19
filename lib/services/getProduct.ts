@@ -1,5 +1,5 @@
 export default async function getProduct(slug: string) {
-	return await fetch(`http://localhost:3000/api/shop/${slug}`)
+	return await fetch(`http://localhost:3000/api/shop/${slug}`, { cache: 'no-store' })
 		.then((res) => {
 			if (!res.ok) {
 				throw new Error(res.statusText);

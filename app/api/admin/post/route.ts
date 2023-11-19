@@ -9,6 +9,15 @@ cloudinary.config({
 	api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export async function GET() {
+	try {
+		const posts = await prisma.post.findMany();
+		return NextResponse.json({ message: 'Posts fetched successfully', posts });
+	} catch (err) {
+		return NextResponse.json({ message: 'Error', err });
+	}
+}
+
 export async function POST(req: Request) {
 	const data: Post = await req.json();
 	const { title, content, image } = data;
@@ -31,12 +40,23 @@ export async function POST(req: Request) {
 	}
 
 	/*const post = await prisma.post.create({
-			data: {
-				title,
-				content,
-				image: result.secure_url,
-			},
-		});
-		return NextResponse.json({ message: 'Post created successfully', post });
-	}*/
+		data: {
+			title,
+			content,
+			image: result.secure_url,
+		},
+	});
+	return NextResponse.json({ message: 'Post created successfully', post });*/
+}
+
+export async function DELETE(req: Request) {
+	const data = await req.json();
+	const { id } = data;
+	console.log(id);
+	const post = await prisma.post.delete({
+		where: {
+			id,
+		},
+	});
+	return NextResponse.json({ message: 'Post deleted successfully' });
 }

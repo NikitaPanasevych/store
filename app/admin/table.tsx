@@ -30,6 +30,7 @@ import PostForm from '@/components/forms/add-post-form';
 import ProductForm from '@/components/forms/add-product-form';
 import GrapeForm from '@/components/forms/add-category-form';
 import CategoriesForm from '@/components/forms/add-category-form';
+import removeItem from '@/lib/services/delete';
 
 export type Content = Post | ProductProps | Categories;
 
@@ -85,7 +86,7 @@ export const NestedTable = (props: NestedTableProps) => {
 										<Button style="icon_btn">
 											<EditIcon />
 										</Button>
-										<Button style="icon_btn">
+										<Button style="icon_btn" onClick={() => removeItem(item)}>
 											<HighlightOffIcon />
 										</Button>
 									</TableCell>
@@ -98,3 +99,6 @@ export const NestedTable = (props: NestedTableProps) => {
 		</List>
 	);
 };
+function Delete(item: Content): (() => void) | undefined {
+	throw new Error('Function not implemented.');
+}

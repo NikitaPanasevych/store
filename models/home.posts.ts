@@ -6,6 +6,6 @@ export interface Post {
 }
 
 export interface PostRequest {
-	status: string;
-	data: Post[];
+	message: string;
+	posts: Post[];
 }
