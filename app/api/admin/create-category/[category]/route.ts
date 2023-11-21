@@ -8,24 +8,46 @@ export async function POST(req: any) {
 	const { name } = data;
 
 	try {
-		if (query === 'grape') {
-			await prisma.grape.create({
-				data: {
-					name,
-				},
-			});
-		} else if (query === 'country') {
-			await prisma.country.create({
-				data: {
-					name,
-				},
-			});
-		} else {
-			await prisma.type.create({
-				data: {
-					name,
-				},
-			});
+		const createData = {
+			data: {
+				name,
+			},
+		};
+
+		switch (query) {
+			case 'grape':
+				await prisma.grape.create(createData);
+				break;
+			case 'country':
+				await prisma.country.create(createData);
+				break;
+			default:
+				await prisma.type.create(createData);
+				break;
+		}
+		return NextResponse.json({ message: 'Category created successfully' });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
+}
+
+export async function DELETE(req: any) {
+	const data: Categories = await req.json();
+	const query: 'grape' | 'country' | 'category' = req.nextUrl.pathname.split('/')[4].replace(/-/g, ' ');
+	const { id } = data;
+
+	try {
+		switch (query) {
+			case 'grape':
+				await prisma.grape.delete({ where: { id } });
+				break;
+			case 'country':
+				await prisma.country.delete({ where: { id } });
+				break;
+			default:
+				await prisma.type.delete({ where: { id } });
+				break;
 		}
 		return NextResponse.json({ message: 'Category created successfully' });
 	} catch (err) {

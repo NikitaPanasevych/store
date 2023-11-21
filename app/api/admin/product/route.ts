@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 import { ProductProps } from '@/models/shop.product';
+import { transformCloudinaryUrl } from '@/lib/functions/transformCloudinaryURL';
 
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
@@ -38,4 +39,21 @@ export async function POST(req: Request) {
 		});
 		return NextResponse.json({ message: 'Post created successfully', post });
 	}*/
+}
+
+export async function DELETE(req: Request) {
+	const data = await req.json();
+	const { id, image } = data;
+	try {
+		await cloudinary.uploader.destroy(transformCloudinaryUrl(image, 'wine'));
+		const deletedProduct = await prisma.product.delete({
+			where: {
+				id,
+			},
+		});
+		return NextResponse.json({ message: 'Product deleted successfully', deletedProduct });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
 }

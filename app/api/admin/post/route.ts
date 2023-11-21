@@ -2,6 +2,7 @@ import prisma from '@/lib/prisma';
 import { Post } from '@/models/home.posts';
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
+import { transformCloudinaryUrl } from '@/lib/functions/transformCloudinaryURL';
 
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
@@ -51,12 +52,18 @@ export async function POST(req: Request) {
 
 export async function DELETE(req: Request) {
 	const data = await req.json();
-	const { id } = data;
-	console.log(id);
-	const post = await prisma.post.delete({
-		where: {
-			id,
-		},
-	});
-	return NextResponse.json({ message: 'Post deleted successfully' });
+	console.log(data);
+	const { id, image } = data;
+	try {
+		await cloudinary.uploader.destroy(transformCloudinaryUrl(image, 'posts'));
+		const post = await prisma.post.delete({
+			where: {
+				id,
+			},
+		});
+		return NextResponse.json({ message: 'Post deleted successfully', post });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
 }

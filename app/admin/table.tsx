@@ -86,7 +86,7 @@ export const NestedTable = (props: NestedTableProps) => {
 										<Button style="icon_btn">
 											<EditIcon />
 										</Button>
-										<Button style="icon_btn" onClick={() => removeItem(item)}>
+										<Button style="icon_btn" onClick={() => removeItem(item, name)}>
 											<HighlightOffIcon />
 										</Button>
 									</TableCell>
