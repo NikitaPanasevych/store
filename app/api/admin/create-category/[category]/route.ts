@@ -55,3 +55,26 @@ export async function DELETE(req: any) {
 		return NextResponse.json({ message: 'Error', err });
 	}
 }
+
+export async function PUT(req: any) {
+	const data: Categories = await req.json();
+	const query: 'grape' | 'country' | 'category' = req.nextUrl.pathname.split('/')[4].replace(/-/g, ' ');
+	const { id, name } = data;
+	try {
+		switch (query) {
+			case 'grape':
+				await prisma.grape.update({ where: { id }, data: { id, name } });
+				break;
+			case 'country':
+				await prisma.country.update({ where: { id }, data: { id, name } });
+				break;
+			default:
+				await prisma.type.update({ where: { id }, data: { id, name } });
+				break;
+		}
+		return NextResponse.json({ message: 'Category updated successfully' });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
+}

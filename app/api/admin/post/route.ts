@@ -77,6 +77,7 @@ export async function PUT(req: Request) {
 				id,
 			},
 			data: {
+				id,
 				title,
 				content,
 				image,

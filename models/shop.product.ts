@@ -8,9 +8,9 @@ export interface ProductProps {
 	image: string;
 	alcohol?: number;
 	volume?: number;
-	grape?: string;
-	country?: string;
-	category?: string;
+	grapeName?: string;
+	countryName?: string;
+	categoryName?: string;
 }
 
 export interface ProductsRequest {

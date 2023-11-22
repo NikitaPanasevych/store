@@ -28,11 +28,12 @@ import Button from '@/UI/button';
 import AppModal from '@/components/modal';
 import PostForm from '@/components/forms/add-post-form';
 import ProductForm from '@/components/forms/add-product-form';
-import GrapeForm from '@/components/forms/add-category-form';
 import CategoriesForm from '@/components/forms/add-category-form';
 import removeItem from '@/lib/services/delete';
 import UpdatePostForm from '@/components/forms/update-post-form';
-import { isPost, isProductProps } from '@/lib/functions/type-guards';
+import { isCategories, isPost, isProductProps } from '@/lib/functions/type-guards';
+import UpdateProductForm from '@/components/forms/update-product-form';
+import UpdateCategoriesForm from '@/components/forms/update-category-form';
 
 export type Content = Post | ProductProps | Categories;
 
@@ -85,10 +86,10 @@ export const NestedTable = (props: NestedTableProps) => {
 												{isPost(item) ? (
 													<UpdatePostForm post={item} />
 												) : isProductProps(item) ? (
-													<ProductForm />
-												) : (
-													<CategoriesForm name={name} />
-												)}
+													<UpdateProductForm product={item} />
+												) : isCategories(item) ? (
+													<UpdateCategoriesForm name={name} category={item} />
+												) : null}
 											</AppModal>
 										</Button>
 										<Button style="icon_btn" onClick={() => removeItem(item, name)}>

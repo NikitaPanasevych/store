@@ -8,7 +8,7 @@ export function isPost(content: Content): content is Post {
 }
 
 export function isProductProps(content: Content): content is ProductProps {
-	return 'name' in content;
+	return 'price' in content;
 }
 
 export function isCategories(content: Content): content is Categories {

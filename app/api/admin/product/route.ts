@@ -12,7 +12,8 @@ cloudinary.config({
 
 export async function POST(req: Request) {
 	const data: ProductProps = await req.json();
-	const { name, description, year, price, image, alcohol, quantity, volume, category, grape, country } = data;
+	const { name, description, year, price, image, alcohol, quantity, volume, categoryName, grapeName, countryName } =
+		data;
 	console.log(data);
 	/*const options = {
 		use_filename: true,
@@ -52,6 +53,36 @@ export async function DELETE(req: Request) {
 			},
 		});
 		return NextResponse.json({ message: 'Product deleted successfully', deletedProduct });
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
+}
+
+export async function PUT(req: Request) {
+	const data = await req.json();
+	const { id, name, description, year, price, image, alcohol, quantity, volume, category, grape, country } = data;
+	try {
+		await prisma.product.update({
+			where: {
+				id,
+			},
+			data: {
+				id,
+				name,
+				description,
+				year,
+				price,
+				image,
+				alcohol,
+				quantity,
+				volume,
+				category,
+				grape,
+				country,
+			},
+		});
+		return NextResponse.json({ message: 'Product updated successfully' });
 	} catch (err) {
 		console.log(err);
 		return NextResponse.json({ message: 'Error', err });

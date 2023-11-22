@@ -1,7 +1,6 @@
 import { useUpdatePost } from '@/lib/hooks';
 import Form from './form';
 import { Post } from '@/models/home.posts';
-import { Content } from '@/app/admin/table';
 
 interface UpdatePostFormProps {
 	post: Post;

@@ -1,11 +1,11 @@
-import { Post } from '@/models/home.posts';
+import { ProductProps } from '@/models/shop.product';
+import productSchema from '@/schemas/product.schema';
 import { useFormik } from 'formik';
-import postSchema from '@/schemas/post.schema';
 import { toast } from 'react-toastify';
 
-export default function useUpdatePost(initialValues: Post) {
-	const onSubmit = async (values: Post) => {
-		await fetch('/api/admin/post', {
+export default function useUpdateProduct(initialValues: ProductProps) {
+	const onSubmit = async (values: ProductProps) => {
+		await fetch('/api/admin/product', {
 			method: 'PUT',
 			body: JSON.stringify(values),
 			headers: {
@@ -17,13 +17,8 @@ export default function useUpdatePost(initialValues: Post) {
 	};
 
 	const { values, errors, touched, handleChange, handleSubmit, handleBlur } = useFormik({
-		initialValues: {
-			id: initialValues.id,
-			title: initialValues.title,
-			content: initialValues.content,
-			image: '',
-		},
-		validationSchema: postSchema,
+		initialValues,
+		//validationSchema: productSchema,
 		onSubmit,
 	});
 
