@@ -31,6 +31,8 @@ import ProductForm from '@/components/forms/add-product-form';
 import GrapeForm from '@/components/forms/add-category-form';
 import CategoriesForm from '@/components/forms/add-category-form';
 import removeItem from '@/lib/services/delete';
+import UpdatePostForm from '@/components/forms/update-post-form';
+import { isPost, isProductProps } from '@/lib/functions/type-guards';
 
 export type Content = Post | ProductProps | Categories;
 
@@ -76,15 +78,18 @@ export const NestedTable = (props: NestedTableProps) => {
 						<TableBody>
 							{content.map((item: Content, index: number) => (
 								<TableRow key={index}>
-									<TableCell>
-										{
-											// @ts-ignore
-											name === 'Posts' ? item.title : item.name
-										}
-									</TableCell>
+									<TableCell>{isPost(item) ? item.title : item.name}</TableCell>
 									<TableCell>
 										<Button style="icon_btn">
-											<EditIcon />
+											<AppModal buttonIcon={<EditIcon />}>
+												{isPost(item) ? (
+													<UpdatePostForm post={item} />
+												) : isProductProps(item) ? (
+													<ProductForm />
+												) : (
+													<CategoriesForm name={name} />
+												)}
+											</AppModal>
 										</Button>
 										<Button style="icon_btn" onClick={() => removeItem(item, name)}>
 											<HighlightOffIcon />
@@ -99,6 +104,3 @@ export const NestedTable = (props: NestedTableProps) => {
 		</List>
 	);
 };
-function Delete(item: Content): (() => void) | undefined {
-	throw new Error('Function not implemented.');
-}

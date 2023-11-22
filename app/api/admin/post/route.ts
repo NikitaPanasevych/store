@@ -67,3 +67,23 @@ export async function DELETE(req: Request) {
 		return NextResponse.json({ message: 'Error', err });
 	}
 }
+
+export async function PUT(req: Request) {
+	const data = await req.json();
+	const { id, title, content, image } = data;
+	try {
+		await prisma.post.update({
+			where: {
+				id,
+			},
+			data: {
+				title,
+				content,
+				image,
+			},
+		});
+	} catch (err) {
+		console.log(err);
+		return NextResponse.json({ message: 'Error', err });
+	}
+}
