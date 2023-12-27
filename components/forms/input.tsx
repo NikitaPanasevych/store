@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import styles from './styles.module.scss';
 
 interface InputProps {
 	value: string | number | undefined;
@@ -16,6 +17,7 @@ export const Input = ({ value, label, type, readonly, handleChange, handleBlur, 
 		<>
 			<label htmlFor={label}>{label}</label>
 			<input
+				className={styles.input}
 				id={label}
 				readOnly={readonly}
 				name={label}

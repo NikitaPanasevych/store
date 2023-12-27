@@ -12,8 +12,7 @@ cloudinary.config({
 
 export async function POST(req: Request) {
 	const data: ProductProps = await req.json();
-	const { name, description, year, price, image, alcohol, quantity, volume, categoryName, grapeName, countryName } =
-		data;
+	const { name, description, year, price, image, alcohol, quantity, volume, categoryName, grapeName, countryName } = data;
 	console.log(data);
 	/*const options = {
 		use_filename: true,

@@ -44,16 +44,18 @@
                 gap: 1rem;
             }
         }
-        &__listing{
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            justify-items: center;
-            grid-gap: 2rem;
-            padding: 2.5rem 0;
-
-        }
+        
     }
+}
+
+
+.listing{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    justify-items: center;
+    grid-gap: 2rem;
+    padding: 2.5rem 0;
 }
 
 //------------------------------------FILTERS------------------------------------//

@@ -7,7 +7,7 @@ const nextConfig = {
 		prependData: '@import "./base.scss";',
 	},
 	images: {
-		domains: ['localhost', 'res.cloudinary.com', 'res-console.cloudinary.com', 'lh3.googleusercontent.com'],
+		domains: ['', 'localhost', 'res.cloudinary.com', 'res-console.cloudinary.com', 'lh3.googleusercontent.com'],
 	},
 };
 

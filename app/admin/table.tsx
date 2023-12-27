@@ -3,6 +3,7 @@
 import { Post } from '@/models/home.posts';
 import { ProductProps } from '@/models/shop.product';
 import { Categories } from '@/models/shop.categories';
+import styles from './styles.module.scss';
 import {
 	Collapse,
 	List,
@@ -57,7 +58,7 @@ export const NestedTable = (props: NestedTableProps) => {
 				<ListItemIcon>
 					<ArticleIcon />
 				</ListItemIcon>
-				<ListItemText primary={name + '(' + content.length + ')'} />
+				<ListItemText className={styles.test} primary={name + '(' + content.length + ')'} />
 				{open ? <ExpandLess /> : <ExpandMore />}
 			</ListItemButton>
 			<Collapse in={open} timeout="auto" unmountOnExit>

@@ -1,0 +1,84 @@
+$bg-primary: #fffffe;
+$bg-secondary: #181818;
+$bg-tertiary: #FFD803;
+
+$text-headline-primary: #272343;
+$text-headline-secondary: #fffffe;
+$text-headline-tertiary: #272343;
+
+$text-primary: #2d334a;
+$text-secondary: #ddd6d6;
+$text-tertiary: #272343;
+
+
+.search{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $bg-secondary;
+    color: $text-headline-secondary;
+
+    &_header{
+        display: flex;
+        align-items: center;
+        padding: 5rem 10rem;
+        h1{
+            font-size: 6rem;
+            margin: 0;
+            flex: 1;
+            text-align: center;
+            transform: translateX(3.5rem);
+        }
+
+        button{
+            background-color: $bg-secondary;
+            width: 7rem;
+            height: 7rem;
+            border-radius: 50%;
+            padding: 1.5rem;
+            margin: 0;
+            border: 2px solid lighten($bg-secondary, 10%);
+            color: $text-headline-secondary;
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            &:hover{
+                border: 2px solid lighten($bg-secondary, 50%);
+            }
+            svg{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }
+    &_container{
+            width: 100%;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            input{
+                width: 50%;
+                height: 5rem;
+                background-color: $bg-secondary;
+                border: 2px solid lighten($bg-secondary, 10%);
+                border-radius: 5rem;
+                padding: 0 5rem 0rem 2.5rem;
+                font-size: 2.25rem;
+                color: $text-headline-secondary;
+                transition: all 0.3s ease-in-out;
+                &:focus{
+                    outline: none;
+                    border: 2px solid $text-headline-secondary;
+                }
+            }
+        }
+}
+
+    

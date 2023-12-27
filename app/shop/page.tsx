@@ -1,15 +1,13 @@
 import MyDrawer from '@/components/drawer';
 import { Listbox } from '@/components/listbox';
-import { getProducts } from '@/lib/services';
-import { ProductProps } from '@/models/shop.product';
 import { PagerLinks } from '@/UI/pager-links';
 import { Filters } from './filters';
-import { Product } from './product';
 import styles from './styles.module.scss';
+import React from 'react';
+import ProductsListing from './listing';
+import withGrid from '@/components/loadings/products/skeleton.product';
 
-export default async function Shop() {
-	const products = await getProducts();
-
+export default function Shop() {
 	return (
 		<main className={styles.shop}>
 			<div className={styles.shop__main}>
@@ -30,20 +28,9 @@ export default async function Shop() {
 						})}
 					</div>
 				</div>
-				<div className={styles.shop__main__listing}>
-					{products?.data.map((product: ProductProps) => {
-						return (
-							<Product
-								name={product.name}
-								quantity={product.quantity}
-								price={product.price}
-								image={product.image}
-								categories={product.categories}
-								key={product.id}
-							/>
-						);
-					})}
-				</div>
+				<React.Suspense fallback={withGrid()}>
+					<ProductsListing />
+				</React.Suspense>
 			</div>
 		</main>
 	);

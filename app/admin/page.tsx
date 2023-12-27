@@ -8,10 +8,11 @@ const AdminPage = async () => {
 	return (
 		<main className={styles.admin}>
 			<h1>Admin Page</h1>
-			{Object.keys(data).map((key, index) => {
-				// @ts-ignore
-				return <NestedTable content={data[key]} name={key} key={index} />;
-			})}
+			<section className={styles.admin__main}>
+				{Object.keys(data).map((key, index) => {
+					return <NestedTable content={data[key]} name={key} key={index} />;
+				})}
+			</section>
 		</main>
 	);
 };

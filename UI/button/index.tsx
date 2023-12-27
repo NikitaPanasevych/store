@@ -15,11 +15,17 @@ const Button: React.FC<ButtonProps> = ({ children, style, onClick }) => {
 				{children}
 			</button>
 		);
-	} else {
+	} else if (style === 'icon') {
 		return (
 			<IconButton onClick={onClick} className={styles[style]}>
 				{children}
 			</IconButton>
+		);
+	} else {
+		return (
+			<button onClick={onClick} className={styles[style]}>
+				{children}
+			</button>
 		);
 	}
 };
