@@ -60,36 +60,47 @@
 
 //------------------------------------FILTERS------------------------------------//
 
-.filter{
-    width: 100%;
-    &__name{
-        width: 100%;
-        height: 3.5rem;
-        background-color: aqua;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.8rem;
-        font-weight: 700;
-    }
-    &__section{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+$bg-primary: #fffffe;
+$bg-secondary: #181818;
+$bg-tertiary: #FFD803;
 
-        &__element{
+$text-headline-primary: #272343;
+$text-headline-secondary: #fffffe;
+$text-headline-tertiary: #272343;
+
+$text-primary: #2d334a;
+$text-secondary: #ddd6d6;
+$text-tertiary: #272343;
+
+.aside{
+    height: 100%;
+    &_list{
+        width: 250px;
+        height: 100%;
+        font-size: 2rem;
+        line-height: calc(2rem*1.25);
+        font-weight: 500;
+        background-color: $bg-secondary;
+        list-style-type: none;
+        padding: 0;
+        li{
             width: 100%;
-            height: 3rem;
-            background-color: aquamarine;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: .5rem;
-            font-size: 1.6rem;
-            font-weight: 500;
-            padding-left: 3rem;
+            height: 5rem;
+            padding: 1rem, 0;
+            color: $text-secondary;
+            transition: all 0.3s ease-in-out;
+            &:hover{
+                background-color: darken($bg-secondary, 10%);
+                color: darken($text-secondary, 10%);
+            }
+            a{
+                padding: 1rem;
+                width: 100%;
+                display: block;
+                text-decoration: none;
+                color: inherit;
+            }
         }
-
     }
 }
 

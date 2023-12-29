@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import styles from './styles.module.scss';
 
 type Anchor = 'left' | 'right' | 'top' | 'bottom';
@@ -36,7 +35,12 @@ export default function MyDrawer(props: DrawerProps) {
 	};
 
 	const list = (anchor: Anchor) => (
-		<Box role="presentation" onClick={toggleDrawer(anchor, false)} onKeyDown={toggleDrawer(anchor, false)}>
+		<Box
+			style={{ height: '100%' }}
+			role="presentation"
+			onClick={toggleDrawer(anchor, false)}
+			onKeyDown={toggleDrawer(anchor, false)}
+		>
 			{children}
 		</Box>
 	);
@@ -48,7 +52,7 @@ export default function MyDrawer(props: DrawerProps) {
 					<button className={styles.button} onClick={toggleDrawer(anchor, true)}>
 						{buttonChildren}
 					</button>
-					<Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+					<Drawer className="drawer" anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
 						{list(anchor)}
 					</Drawer>
 				</React.Fragment>

@@ -18,6 +18,10 @@ export interface ProductsRequest {
 	data: ProductProps[];
 }
 
+export interface CartProductProps extends ProductProps {
+	cartQuantity: number;
+}
+
 export interface ProductRequest {
 	status: string;
 	data: ProductProps;

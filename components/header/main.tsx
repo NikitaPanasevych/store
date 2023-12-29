@@ -4,13 +4,11 @@ import styles from './styles.module.scss';
 import { BsFillBagFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
 import MyDrawer from '../drawer';
-import { Cart } from '../cart';
 import { toggleSearch } from '@/redux/features/search.slice';
-import { RootState } from '@/redux/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Cart } from '../cart';
 
 const Main = () => {
-	const isOpen = useSelector((state: RootState) => state.searchReducer.searchOpen);
 	const dispatch = useDispatch();
 
 	return (
