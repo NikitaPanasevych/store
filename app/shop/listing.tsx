@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './styles.module.scss';
 import { ProductProps } from '@/models/shop.product';
@@ -10,17 +12,7 @@ export default async function ProductsListing() {
 	return (
 		<div className={styles.listing}>
 			{products?.data.map((product: ProductProps) => {
-				return (
-					<Product
-						name={product.name}
-						quantity={product.quantity}
-						price={product.price}
-						volume={product.volume}
-						image={product.image}
-						categories={product.categories}
-						key={product.id}
-					/>
-				);
+				return <Product product={product} />;
 			})}
 		</div>
 	);

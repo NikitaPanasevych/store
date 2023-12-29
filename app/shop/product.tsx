@@ -1,9 +1,19 @@
+'use client';
+
 import { ProductProps } from '@/models/shop.product';
+import { addToCart } from '@/redux/features/cartSlice';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 
-export const Product = (props: ProductProps) => {
-	const { name, quantity, price, image, volume } = props;
+export interface ProductCardProps {
+	product: ProductProps;
+}
+
+export const Product = (props: ProductCardProps) => {
+	const { name, quantity, price, image, volume } = props.product;
+
+	const dispatch = useDispatch();
 
 	return (
 		<Link href={'/shop/' + name.replace(/ /g, '-')}>
@@ -18,7 +28,15 @@ export const Product = (props: ProductProps) => {
 				</div>
 				<div className={styles.product__price}>
 					<div className={styles.product__price__value}>$ {price}</div>
-					<button className={styles.product__price__addbtn}>Add to Cart</button>
+					<button
+						className={styles.product__price__addbtn}
+						onClick={(event) => {
+							event.preventDefault();
+							dispatch(addToCart(props.product));
+						}}
+					>
+						Add to Cart
+					</button>
 				</div>
 			</div>
 		</Link>

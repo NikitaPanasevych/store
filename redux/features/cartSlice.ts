@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CartProductProps } from '../../models/shop.product';
+import { CartProductProps, ProductProps } from '../../models/shop.product';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 const cartReducer = createSlice({
