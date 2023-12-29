@@ -35,12 +35,7 @@ export default function MyDrawer(props: DrawerProps) {
 	};
 
 	const list = (anchor: Anchor) => (
-		<Box
-			style={{ height: '100%' }}
-			role="presentation"
-			onClick={toggleDrawer(anchor, false)}
-			onKeyDown={toggleDrawer(anchor, false)}
-		>
+		<Box style={{ height: '100%' }} role="presentation">
 			{children}
 		</Box>
 	);
