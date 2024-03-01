@@ -12,6 +12,7 @@ header{
         align-items: center;
         justify-content: space-between;
         box-shadow: 0 0.5rem 3rem rgba(0,0,0,0.1);
+        z-index: 1000;
     
             &__left{
                 flex: 1;
@@ -81,6 +82,7 @@ header{
         align-items: center;
         justify-content: flex-start;
         padding: .75rem 5rem;
+        z-index: 1000;
 
         &__element{
             display: flex;
@@ -101,44 +103,5 @@ header{
                 color: $dark;
             }
         }
-
-        
-
-        &__list{
-            display: flex;
-            flex-direction: column  ;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            background-color: $dark;
-            color: $light;
-            
-            transform: translate(-7.5rem, 10.5%);
-            
-
-            &__element{
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                font-size: 1.6rem;
-                font-weight: 600;
-                line-height: 1.6rem;
-                color: $light;
-                cursor: pointer;
-                transition: all 0.3s;
-                padding: 1rem 2rem;
-                width: 100%;
-
-                &:hover{
-                    background-color: $light;
-                    color: $dark;
-                }
-            }
-        }
     }
-}
-
-.show{
-    background-color: $light !important;
-    color: $dark !important;
 }

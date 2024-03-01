@@ -1,5 +1,5 @@
 import MyDrawer from '@/components/drawer';
-import { Listbox } from '@/components/listbox';
+import { MyListbox } from '@/components/listbox';
 import { PagerLinks } from '@/UI/pager-links';
 import { Filters } from './filters';
 import styles from './styles.module.scss';
@@ -17,8 +17,15 @@ export default function Shop() {
 				</div>
 				<div className={styles.shop__main__sort}>
 					<div className={styles.shop__main__sort__section}>
-						{<Listbox name="Default Sort" options={['Default Sort', 'Price', 'Name', 'Rating']} />}
-						<MyDrawer anchor="left" buttonChildren={<div className={styles.button}>Filters</div>}>
+						{<MyListbox name="Default Sort" options={['Default Sort', 'Price', 'Name', 'Rating']} />}
+						<MyDrawer
+							anchor="left"
+							buttonChildren={
+								<div className="relative w-full rounded-lg text-[1.4rem] bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 cursor-pointer">
+									Filters
+								</div>
+							}
+						>
 							<Filters />
 						</MyDrawer>
 					</div>

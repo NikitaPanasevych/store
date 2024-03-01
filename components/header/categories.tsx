@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-import { Dropdown } from './dropdown';
+import MyDropdown from './newDropdown';
 import getCategory from '@/lib/services/getCategories';
 import { Categories } from '@/models/shop.categories';
 
@@ -13,7 +13,7 @@ export const CategoriesComponent = async () => {
 	return (
 		<div className={styles.category}>
 			{keys.map((key, index) => (
-				<Dropdown key={index} name={key} options={values[index]} />
+				<MyDropdown key={index} name={key} options={values[index]} />
 			))}
 			<div className={styles.category__element}>Full selection</div>
 		</div>

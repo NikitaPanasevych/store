@@ -106,22 +106,6 @@ $text-tertiary: #272343;
 
 //------------------------------------PRODUCT------------------------------------//
 
-.button{
-    font-size: 1.4rem;
-    font-weight: 500;
-    padding: .5rem 1rem;
-    min-width: 10rem;
-    height: 3rem;
-    border-radius: 5px;
-    border: 1px solid $dark;
-    transition: all .3s ease-in-out;
-    cursor: pointer;
-    &:hover{
-        background-color: $dark;
-        color: $light;
-    }
-}
-
 .product{
     height: 50rem;
     width: 30rem;
