@@ -1,0 +1,106 @@
+@import "../../../styles/base.scss";
+
+.productPage{
+    min-height: 100vh;
+    padding: 17.5rem 0;
+    display: flex;
+}
+
+.Product{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    justify-content: center;
+    margin: auto;
+    max-width: 80%;
+
+    &__image{
+        width: 80%;
+        height: auto;
+        
+        object-fit: cover;
+        border-radius: 1rem;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+    }
+
+    &__info{
+        display: grid;
+        grid-template-columns: 2fr 20% 1fr;
+        grid-template-rows: 0.5fr 0.5fr 1fr;
+        grid-template-areas:
+        'title . btns'
+        'attributes attributes attributes'
+        'description description .'
+        ;
+        gap: 3rem;
+
+        
+        &__title{
+            grid-area: title;
+            
+            h1{
+                font-size: 2.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                &::after{
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 0.125rem;
+                    background-color: $dark;
+                    border-radius: 1rem;
+                }
+            }
+
+            p{
+                font-size: 1.8rem;
+            }   
+        }
+
+        &__checkout{
+            grid-area: btns;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            &__price{
+                font-size: 2.5rem;
+            }
+        }
+        &__attributes{
+            grid-area: attributes;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+
+            span{
+                font-size: 1.8rem;
+            }
+
+
+        }
+        &__description{
+            grid-area: description;
+            p{
+                font-size: 1.8rem;
+                line-height: 1.5;
+            }
+        }
+    }
+
+}
+
+
+.skeleton{
+    width: 100%;
+    background-color: #ececec;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+
+}

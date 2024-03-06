@@ -1,139 +1,98 @@
 @import "../../../styles/base.scss";
 
 .productPage{
-    padding: 15rem calc((100vw - 1450px) / 2);
     min-height: 100vh;
+    padding: 17.5rem 0;
+    display: flex;
+}
+
+.Product{
     display: grid;
-    grid-template-columns:  1fr 2fr 1fr ;
-    grid-template-rows: 1fr;
-    grid-column-gap: 3rem;
-    grid-row-gap: 3rem;
-
-    &__info{
-        h3{
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 3rem;
-        }
-        &__block{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr;
-            grid-column-gap: 2rem;
-            grid-row-gap: 2rem;
-            margin-bottom: 3rem;
-
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-            padding: 3rem;
-
-
-            span{
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 1rem;
-                font-size: 1.6rem;
-                font-weight: 500;
-                span{
-                    font-weight: 600;
-                }
-            }
-        }
-        &__descr{
-            font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 2.4rem;
-            margin-bottom: 3rem;
-            
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-            padding: 3rem;
-
-        }
-        &__price{
-            font-size: 2.4rem;
-            font-weight: 600;
-            margin-bottom: 3rem;
-
-            display: flex;
-            justify-content: space-around;
-            gap: 2rem;
-
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-            padding: 3rem;
-        }
-    }
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    justify-content: center;
+    margin: auto;
+    max-width: 80%;
 
     &__image{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 80%;
+        height: auto;
+        
+        object-fit: cover;
+        border-radius: 1rem;
         img{
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
+            border-radius: 1rem;
         }
     }
 
-    &__buttonBlock{
-        margin-top: 6rem;
-        &__upper{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 2rem;
-            height: 10rem;
+    &__info{
+        display: grid;
+        grid-template-columns: 2fr 20% 1fr;
+        grid-template-rows: 0.5fr 0.5fr 1fr;
+        grid-template-areas:
+        'title . btns'
+        'attributes attributes attributes'
+        'description description .'
+        ;
+        gap: 3rem;
 
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-            padding: 3rem;
-
-            input{
-                @include form-input;
-                width: 10rem;
+        
+        &__title{
+            grid-area: title;
+            
+            h1{
+                font-size: 2.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                &::after{
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 0.125rem;
+                    background-color: $dark;
+                    border-radius: 1rem;
+                }
             }
+
+            p{
+                font-size: 1.8rem;
+            }   
         }
 
-        &__lower{
+        &__checkout{
+            grid-area: btns;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            
-            margin-bottom: 2rem;
-            height: 10rem;
-
-            padding: 3rem;
             gap: 2rem;
 
-            font-size: 1.8rem;
-
-            
-
-            div{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 2rem;
-
-                svg{
-                    width: 5rem;
-                    height: auto;
-                }
-
-                &:nth-child(2){
-                    svg{
-                        width: 4rem;
-                        height: auto;
-                    }
-                }
-                
+            &__price{
+                font-size: 2.5rem;
             }
-            
         }
+        &__attributes{
+            grid-area: attributes;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
 
+            span{
+                font-size: 1.8rem;
+            }
+
+
+        }
+        &__description{
+            grid-area: description;
+            p{
+                font-size: 1.8rem;
+                line-height: 1.5;
+            }
+        }
     }
+
 }
 
 

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<ReduxProvider>
 					<Search />
 					<Header />
-					{children}
+					<main>{children}</main>
 					<Footer />
 				</ReduxProvider>
 			</body>

@@ -1,43 +1,54 @@
-import { StickyScroll } from '@/components/sticky-block';
+import { TextGenerateEffect } from '@/components/text-generate';
 import styles from './styles.module.scss';
 import React from 'react';
 
 export default async function Home() {
-	const content = [
+	const callouts = [
 		{
-			title: 'Collaborative Editing',
-			description:
-				'Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.',
+			name: 'Desk and Office',
+			description: 'Work from home accessories',
+			imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg',
+			imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+			href: '#',
 		},
 		{
-			title: 'Real time changes',
-			description:
-				'See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.',
+			name: 'Self-Improvement',
+			description: 'Journals and note-taking',
+			imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg',
+			imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+			href: '#',
 		},
 		{
-			title: 'Version control',
-			description:
-				"Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+			name: 'Travel',
+			description: 'Daily commute essentials',
+			imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',
+			imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+			href: '#',
 		},
 		{
-			title: 'Running out of content',
-			description:
-				"Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+			name: 'Travel',
+			description: 'Daily commute essentials',
+			imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',
+			imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+			href: '#',
 		},
 	];
 
 	return (
 		<main className={styles.home}>
-			<div className="relative isolate px-6 pt-14 lg:px-8">
+			<div className="relative isolate px-6 pt-14 lg:px-8 ">
 				<div>
-					<div className="absolute inset-0 z-[-1] ">
+					<div className="absolute h-full inset-0 z-[-1] ">
 						<div className={styles.bg} />
 					</div>
 				</div>
 				<div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
 					<div className="text-center">
-						<h1 className="text-[3rem] font-bold tracking-tight text-light sm:text-[4rem] leading-[4rem]">
-							Raised from the stone below, our story begins
+						<h1>
+							<TextGenerateEffect
+								words="Raised from the stone below, our story begins"
+								className="text-[3rem] font-bold tracking-tight text-light sm:text-[4rem] leading-[4rem]"
+							/>
 						</h1>
 						<p className="mt-6 text-[2rem] leading-8 text-gray-200">
 							We import wines from small producers in lesser known France and Italy.
@@ -65,7 +76,33 @@ export default async function Home() {
 					/>
 				</div>
 			</div>
-			<StickyScroll content={content} />
+			<div className="bg-gray-100">
+				<div className="flex justify-center px-4 sm:px-6 lg:px-8">
+					<div className=" max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 lg:w-[120rem]">
+						<h2 className="text-6xl font-bold text-gray-900">Collections</h2>
+						<div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+							{callouts.map((callout) => (
+								<div key={callout.name} className="group relative">
+									<div className="relative w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-auto">
+										<img
+											src={callout.imageSrc}
+											alt={callout.imageAlt}
+											className="h-full w-full object-cover object-center"
+										/>
+									</div>
+									<h3 className="mt-6 text-3xl text-gray-500">
+										<a href={callout.href}>
+											<span className="absolute inset-0" />
+											{callout.name}
+										</a>
+									</h3>
+									<p className="text-xl font-semibold text-gray-900">{callout.description}</p>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
 		</main>
 	);
 }
