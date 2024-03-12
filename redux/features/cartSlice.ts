@@ -28,7 +28,7 @@ const cartReducer = createSlice({
 				localStorage.setItem('cart', JSON.stringify(state));
 			}
 		},
-		removeFromCart(state, action) {
+		removeFromCart(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
 				// Check if window is defined (i.e., if running in a browser)
 				const existingProductIndex = state.findIndex((e) => e.name === action.payload.name);

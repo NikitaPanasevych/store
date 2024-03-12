@@ -6,8 +6,11 @@ import styles from './styles.module.scss';
 import React from 'react';
 import ProductsListing from './listing';
 import withGrid from '@/components/loadings/products/skeleton.product';
+import { getProducts } from '@/lib/services';
 
-export default function Shop() {
+export default async function Shop() {
+	const products = await getProducts();
+
 	return (
 		<main className={styles.shop}>
 			<div className={styles.shop__main}>
@@ -36,7 +39,7 @@ export default function Shop() {
 					</div>
 				</div>
 				<React.Suspense fallback={withGrid()}>
-					<ProductsListing />
+					<ProductsListing products={products.data} />
 				</React.Suspense>
 			</div>
 		</main>

@@ -1,3 +1,5 @@
+'use client';
+
 import { ProductProps } from '@/models/shop.product';
 import { addToCart } from '@/redux/features/cartSlice';
 import Link from 'next/link';

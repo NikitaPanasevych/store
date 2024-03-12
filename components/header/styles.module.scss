@@ -68,6 +68,12 @@ header{
                         color: $primary;
                     }
                 }
+                &__qty{
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    color: $dark;
+                    transform: translate(-200%, 10%);
+                }
             }
     }
     .category{

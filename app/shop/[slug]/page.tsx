@@ -9,7 +9,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
 	const { slug } = params;
-	const { toast } = useToast(); // Move useToast hook call here
+	const { toast } = useToast();
 
 	return (
 		<div className={styles.productPage}>

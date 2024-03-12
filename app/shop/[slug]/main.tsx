@@ -1,10 +1,13 @@
+'use client';
+
 import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/cartSlice';
 import { ProductProps } from '@/models/shop.product';
 import { CnButton } from '@/components/ui/button';
 import useFetch from '@/lib/hooks/use-fetch';
-import { Watch } from 'react-loader-spinner';
+import { FallingLines } from 'react-loader-spinner';
+import Fy from './fy';
 
 interface ProductPageMainProps {
 	slug: string;
@@ -19,21 +22,13 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 	if (loading) {
 		return (
 			<div className="flex w-full h-full justify-center align-middle">
-				<Watch
-					visible={true}
-					height="80"
-					width="80"
-					color="#000000"
-					ariaLabel="oval-loading"
-					wrapperStyle={{}}
-					wrapperClass=""
-				/>
+				<FallingLines visible={true} height="100" width="100" color="#000000" />
 			</div>
 		);
 	}
 
 	if (error || !data) {
-		return <div>Error: Failed to fetch data</div>; // Render error state if fetching failed
+		return <div>Error: {error}</div>;
 	}
 
 	const { name, description, price, image, year, alcohol, quantity, volume, categoryName, countryName, grapeName } =
@@ -85,37 +80,37 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 					</div>
 					<div className={styles.Product__info__attributes}>
 						<span>
-							type:{' '}
+							Type:{' '}
 							<p>
 								<strong>{categoryName}</strong>
 							</p>
 						</span>
 						<span>
-							grape:{' '}
+							Grape:{' '}
 							<p>
 								<strong>{grapeName}</strong>
 							</p>
 						</span>
 						<span>
-							year:{' '}
+							Year:{' '}
 							<p>
 								<strong>{year}</strong>
 							</p>
 						</span>
 						<span>
-							alcohol:{' '}
+							Alcohol:{' '}
 							<p>
 								<strong>{alcohol} %</strong>
 							</p>
 						</span>
 						<span>
-							quantity:{' '}
+							Quantity:{' '}
 							<p>
 								<strong>{quantity}</strong>
 							</p>
 						</span>
 						<span>
-							volume:{' '}
+							Volume:{' '}
 							<p>
 								<strong>{volume} ml</strong>
 							</p>
@@ -125,6 +120,7 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 						<p>{description}</p>
 					</div>
 				</div>
+				<Fy />
 			</div>
 		</>
 	);
