@@ -4,7 +4,7 @@ import { ProductProps } from '@/models/shop.product';
 import { addToCart } from '@/redux/features/cartSlice';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import styles from './styles.module.scss';
+import styles from './product.module.scss';
 
 export interface ProductCardProps {
 	product: ProductProps;

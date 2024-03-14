@@ -1,8 +1,11 @@
 import { TextGenerateEffect } from '@/components/text-generate';
 import styles from './styles.module.scss';
 import React from 'react';
+import { auth } from '@/auth';
 
 export default async function Home() {
+	const session = await auth();
+
 	const callouts = [
 		{
 			name: 'Desk and Office',
@@ -37,6 +40,7 @@ export default async function Home() {
 	return (
 		<main className={styles.home}>
 			<div className="relative isolate px-6 pt-14 lg:px-8 ">
+				<div>{JSON.stringify(session)}</div>
 				<div>
 					<div className="absolute h-full inset-0 z-[-1] ">
 						<div className={styles.bg} />

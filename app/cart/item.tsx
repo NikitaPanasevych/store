@@ -16,8 +16,8 @@ const CartItem = ({ product }: { product: CartProductProps }) => {
 	};
 
 	return (
-		<li key={id} className="flex py-6">
-			<div className="h-72 flex-shrink-0 overflow-hidden rounded-md border-gray-200">
+		<li key={id} className="flex py-6 ">
+			<div className="h-72 flex-shrink-0 overflow-hidden rounded-md border-gray-200 ">
 				<img src={image} alt={name} className="h-full w-full object-contain object-center" />
 			</div>
 
