@@ -17,8 +17,12 @@ const Main = () => {
 		<>
 			<div className={styles.header}>
 				<div className={styles.header__left}>
-					<div>Home</div>
-					<div>Wines</div>
+					<div>
+						<a href="/">Home</a>
+					</div>
+					<div>
+						<a href="/shop">Wines</a>
+					</div>
 					<div>About Us</div>
 					<div>Contact</div>
 				</div>

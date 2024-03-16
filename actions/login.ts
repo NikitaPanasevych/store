@@ -5,6 +5,8 @@ import { loginSchema } from '@/schemas/login.schema';
 import { signIn } from '@/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
+import { generateToken } from '@/lib/tokens';
+import { getUserByEmail } from '@/lib/db-queries/getUser';
 
 export const login = async (values: z.infer<typeof loginSchema>) => {
 	const validatedFields = loginSchema.safeParse(values);
@@ -14,6 +16,22 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 	}
 
 	const { email, password } = validatedFields.data;
+
+	const existingUser = await getUserByEmail(email);
+
+	if (!existingUser || !existingUser.email || !existingUser.password) {
+		return {
+			error: 'Invalid email or password',
+		};
+	}
+
+	if (!existingUser.emailVerified) {
+		const token = await generateToken(existingUser.email);
+		//TODO send email confirmation
+		return {
+			success: 'Confirmation email sent!',
+		};
+	}
 
 	try {
 		await signIn('credentials', {

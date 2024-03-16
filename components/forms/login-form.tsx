@@ -6,10 +6,12 @@ import * as z from 'zod';
 import { loginSchema } from '@/schemas/login.schema';
 
 import { CnButton } from '@/components/ui/button';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useState, useTransition } from 'react';
 import { login } from '@/actions/login';
+import { Social } from './socials';
+import { Card } from '../ui/card';
 
 export function LoginForm() {
 	const [error, setError] = useState<string | undefined>('');
@@ -42,10 +44,10 @@ export function LoginForm() {
 	}
 
 	return (
-		<>
-			<h1 className="text-4xl font-semibold mb-8">Login</h1>
+		<Card className="px-16 py-10 w-[50%]">
+			<h1 className="text-4xl font-semibold mb-6 text-center">Login</h1>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 min-w-[40%]">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 min-w-[40%]">
 					<FormField
 						control={form.control}
 						name="email"
@@ -72,11 +74,24 @@ export function LoginForm() {
 							</FormItem>
 						)}
 					/>
-					<CnButton className="rounded" type="submit">
-						Submit
+					<p className="text-[1.4rem]">
+						<a href="/auth/forgot-password" className="text-blue-500">
+							Forgot Password?
+						</a>
+					</p>
+					{error && <p className="text-red-500 text-center">{error}</p>}
+					<CnButton className="rounded w-full" type="submit">
+						Login
 					</CnButton>
+					<Social />
+					<p className="text-[1.4rem] flex justify-between">
+						<span>Don't have an account? </span>
+						<a href="/auth/register" className="text-blue-500">
+							Register
+						</a>
+					</p>
 				</form>
 			</Form>
-		</>
+		</Card>
 	);
 }

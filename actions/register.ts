@@ -7,12 +7,13 @@ import prisma from '@/lib/prisma';
 import { RegisterFormSchema } from '@/schemas/register.schema';
 import { NextResponse } from 'next/server';
 import { getUserByEmail } from '@/lib/db-queries/getUser';
+import { generateToken } from '@/lib/tokens';
 
 export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
 	const validatedData = RegisterFormSchema.safeParse(values);
 
 	if (!validatedData.success) {
-		throw new Error('Invalid data');
+		return { error: 'Invalid fields!' };
 	}
 
 	const { email, password } = validatedData.data;
@@ -21,7 +22,7 @@ export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
 	const existingUser = await getUserByEmail(email);
 
 	if (existingUser) {
-		throw new Error('User already exists');
+		return { error: 'Email already in use!' };
 	}
 
 	await prisma.user.create({
@@ -31,10 +32,8 @@ export const register = async (values: z.infer<typeof RegisterFormSchema>) => {
 		},
 	});
 
+	const token = await generateToken(email);
 	//TODO send email confirmation
 
-	return NextResponse.json({
-		status: 'success',
-		message: 'User created',
-	});
+	return { success: 'Confirmation email sent!' };
 };

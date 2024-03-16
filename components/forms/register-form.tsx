@@ -8,8 +8,16 @@ import { CnButton } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { RegisterFormSchema } from '@/schemas/register.schema';
+import { useState, useTransition } from 'react';
+import { register } from '@/actions/register';
+import { Card } from '../ui/card';
+import { Social } from './socials';
 
 export function RegisterForm() {
+	const [error, setError] = useState<string | undefined>('');
+	const [success, setSuccess] = useState<string | undefined>('');
+	const [isPending, startTransition] = useTransition();
+
 	const form = useForm<z.infer<typeof RegisterFormSchema>>({
 		resolver: zodResolver(RegisterFormSchema),
 		defaultValues: {
@@ -20,21 +28,25 @@ export function RegisterForm() {
 	});
 
 	async function onSubmit(values: z.infer<typeof RegisterFormSchema>) {
-		console.log(JSON.stringify(values));
-		await fetch('/api/auth/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(values),
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data));
+		setError('');
+		setSuccess('');
+
+		startTransition(() => {
+			register(values)
+				.then((data) => {
+					if (data?.error) {
+						form.reset();
+						setError(data.error);
+						console.error(data.error);
+					}
+				})
+				.catch(() => setError('Something went wrong'));
+		});
 	}
 
 	return (
-		<>
-			<h1 className="text-4xl font-semibold mb-8">Registration</h1>
+		<Card className="px-16 py-10 w-[50%]">
+			<h1 className="text-4xl font-semibold mb-8 text-center">Registration</h1>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 min-w-[40%]">
 					<FormField
@@ -76,11 +88,18 @@ export function RegisterForm() {
 							</FormItem>
 						)}
 					/>
-					<CnButton className="rounded" type="submit">
+					<CnButton className="rounded w-full" type="submit">
 						Submit
 					</CnButton>
+					<Social />
+					<p className="text-[1.4rem] flex justify-between">
+						<span>Already have an account?</span>
+						<a href="/auth/login" className="text-blue-500">
+							Log in
+						</a>
+					</p>
 				</form>
 			</Form>
-		</>
+		</Card>
 	);
 }

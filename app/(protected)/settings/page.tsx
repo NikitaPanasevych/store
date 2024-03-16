@@ -1,4 +1,5 @@
 import { auth, signOut } from '@/auth';
+import { Card } from '@/components/ui/card';
 import React from 'react';
 
 const page = async () => {
