@@ -32,15 +32,10 @@ export function RegisterForm() {
 		setSuccess('');
 
 		startTransition(() => {
-			register(values)
-				.then((data) => {
-					if (data?.error) {
-						form.reset();
-						setError(data.error);
-						console.error(data.error);
-					}
-				})
-				.catch(() => setError('Something went wrong'));
+			register(values).then((data) => {
+				setError(data?.error);
+				setSuccess(data?.success);
+			});
 		});
 	}
 
@@ -88,6 +83,16 @@ export function RegisterForm() {
 							</FormItem>
 						)}
 					/>
+					{error && (
+						<Card className="bg-red-100 p-4 rounded">
+							<p className="text-red-500 text-center text-xl">{error}</p>
+						</Card>
+					)}
+					{success && (
+						<Card className="bg-green-100 p-4 rounded">
+							<p className="text-green-500 text-center text-xl">{success}</p>
+						</Card>
+					)}
 					<CnButton className="rounded w-full" type="submit">
 						Submit
 					</CnButton>

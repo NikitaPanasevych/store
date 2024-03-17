@@ -31,15 +31,10 @@ export function LoginForm() {
 		setSuccess('');
 
 		startTransition(() => {
-			login(values)
-				.then((data) => {
-					if (data?.error) {
-						form.reset();
-						setError(data.error);
-						console.error(data.error);
-					}
-				})
-				.catch(() => setError('Something went wrong'));
+			login(values).then((data) => {
+				setError(data?.error);
+				setSuccess(data?.success);
+			});
 		});
 	}
 
@@ -80,6 +75,11 @@ export function LoginForm() {
 						</a>
 					</p>
 					{error && <p className="text-red-500 text-center">{error}</p>}
+					{success && (
+						<Card className="bg-green-100 p-4 rounded">
+							<p className="text-green-500 text-center text-xl">{success}</p>
+						</Card>
+					)}
 					<CnButton className="rounded w-full" type="submit">
 						Login
 					</CnButton>
