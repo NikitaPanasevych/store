@@ -4,12 +4,10 @@ header{
     .header{
         position: fixed;
         top: 0;
-        left: 0;
         width: 100%;
-        background-color: $light;
         height: 5rem;
+        background-color: $light;
         display: flex;
-        align-items: center;
         justify-content: space-between;
         box-shadow: 0 0.5rem 3rem rgba(0,0,0,0.1);
         z-index: 1000;
@@ -58,22 +56,29 @@ header{
     
                 div{
                     width: 2rem;
-                    height: 2rem;
+                    height: 100%;
                     font-size: 2rem;
                     margin-right: 3rem;
                     cursor: pointer;
                     transition: all 0.3s ease-in-out;
-    
-                    &:hover{
-                        color: $primary;
+                    &:nth-child(2){
+                        &:hover{
+                            color: $primary;
+                        }
                     }
+                    &:nth-child(3){
+                        &:hover{
+                            color: $primary;
+                        }
+                    }
+                    
                 }
                 &__qty{
                     font-size: 1.6rem;
                     font-weight: 600;
                     color: $dark;
                     transform: translate(-200%, 10%);
-                }
+                }   
             }
     }
     .category{

@@ -1,6 +1,9 @@
 .page{
-    min-height: 90vh;
-    margin-top: 10rem;
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
     display: grid;
     place-items: center;
     grid-template-columns: 1fr 1fr;
