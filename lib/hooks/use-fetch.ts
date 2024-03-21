@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Define your custom hook
-function useFetch(slug: string) {
+function useFetch(slug: string, method?: string, body?: any) {
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -9,7 +9,13 @@ function useFetch(slug: string) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`http://localhost:3000/api/shop/${slug}`, { cache: 'no-store' });
+				const response = await fetch(slug, {
+					method: method,
+					body: JSON.stringify(body),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				});
 				if (!response.ok) {
 					throw new Error('Failed to fetch data');
 				}

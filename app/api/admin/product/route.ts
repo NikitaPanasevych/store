@@ -12,33 +12,42 @@ cloudinary.config({
 
 export async function POST(req: Request) {
 	const data: ProductProps = await req.json();
-	const { name, description, year, price, image, alcohol, quantity, volume, categoryName, grapeName, countryName } = data;
+	const { name, description, year, price, image, alcohol, quantity, volume, categoryName, grapeName, countryName } =
+		data;
 	console.log(data);
-	/*const options = {
+	const options = {
 		use_filename: true,
 		unique_filename: false,
 		overwrite: true,
-		transformation: [{ width: 1000, height: 752, crop: 'scale' }],
+		transformation: [{ width: 600, height: 1000, crop: 'limit' }],
+		tags: ['wine'],
+		folder: 'wine',
 	};
 
 	try {
 		console.log(image);
 		const result = await cloudinary.uploader.upload(image, options);
 		console.log(result);
+		await prisma.product.create({
+			data: {
+				name,
+				description,
+				image: result.secure_url,
+				year,
+				price,
+				alcohol,
+				quantity,
+				volume,
+				categoryName,
+				grapeName,
+				countryName,
+			},
+		});
+		return NextResponse.json({ message: 'Post created successfully' });
 	} catch (err) {
 		console.log(err);
 		return NextResponse.json({ message: 'Error', err });
 	}
-
-	const post = await prisma.post.create({
-			data: {
-				title,
-				content,
-				image: result.secure_url,
-			},
-		});
-		return NextResponse.json({ message: 'Post created successfully', post });
-	}*/
 }
 
 export async function DELETE(req: Request) {

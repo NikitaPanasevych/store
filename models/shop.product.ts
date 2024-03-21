@@ -6,11 +6,11 @@ export interface ProductProps {
 	year: number;
 	price: number;
 	image: string;
-	alcohol?: number;
-	volume?: number;
-	grapeName?: string;
-	countryName?: string;
-	categoryName?: string;
+	alcohol: number;
+	volume: number;
+	grapeName: string;
+	countryName: string;
+	categoryName: string;
 }
 
 export interface ProductsRequest {

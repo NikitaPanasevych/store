@@ -6,13 +6,14 @@ import styles from './styles.module.scss';
 import React from 'react';
 import ProductsListing from './listing';
 import withGrid from '@/components/loadings/products/skeleton.product';
-import { getProducts } from '@/lib/services';
+import getProducts from '@/actions/getProducts';
 
 export default async function Shop() {
 	const products = await getProducts();
+	console.log(products);
 
 	return (
-		<main className={styles.shop}>
+		<section className={styles.shop}>
 			<div className={styles.shop__main}>
 				<div className={styles.shop__main__header}>
 					<h1>Browse Wines</h1>
@@ -38,10 +39,12 @@ export default async function Shop() {
 						})}
 					</div>
 				</div>
-				<React.Suspense fallback={withGrid()}>
-					<ProductsListing products={products.data} />
-				</React.Suspense>
+				{
+					<React.Suspense fallback={withGrid()}>
+						<ProductsListing products={products} />
+					</React.Suspense>
+				}
 			</div>
-		</main>
+		</section>
 	);
 }

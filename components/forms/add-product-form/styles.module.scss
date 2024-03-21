@@ -1,0 +1,54 @@
+.form{
+    display: grid;
+    gap: 1rem;
+    grid-template-areas: 
+    'name name name'
+    'price year volume'
+    'quantity alcohol .'
+    'image . .'
+    'country grape category'
+    'description description description'
+    'submit submit submit';
+    ;
+
+    .name{
+        grid-area: name;
+    }
+
+    .price{
+        grid-area: price;
+    }
+
+    .year{
+        grid-area: year;
+    }
+    .description{
+        grid-area: description;
+    }
+    .image{
+        grid-area: image;
+    }
+    .submit{
+        grid-area: submit;
+    }
+    .volume{
+        grid-area: volume;
+    }
+    .quantity{
+        grid-area: quantity;
+    }
+    .alcohol{
+        grid-area: alcohol;
+    }
+    .countryName{
+        grid-area: country;
+    }
+    .grapeName{
+        grid-area: grape;
+    }
+    .categoryName{
+        grid-area: category;
+    }
+
+
+}
