@@ -7,11 +7,11 @@ import { getTypes } from '@/lib/db-queries/getTypes';
 
 const getCategory = async (type?: string) => {
 	switch (type) {
-		case 'type':
+		case 'categoryName':
 			return await getTypes();
-		case 'countries':
+		case 'countryName':
 			return await getCountries();
-		case 'grapes':
+		case 'grapeName':
 			return await getGrapes();
 		case 'all':
 			return await getAllCategories();

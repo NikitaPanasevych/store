@@ -28,6 +28,7 @@ export async function POST(req: Request) {
 		console.log(image);
 		const result = await cloudinary.uploader.upload(image, options);
 		console.log(result);
+
 		await prisma.product.create({
 			data: {
 				name,

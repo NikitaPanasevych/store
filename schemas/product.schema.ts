@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 const productSchema = z.object({
-	name: z.string(),
+	name: z.string().min(1).max(255),
 	price: z.number(),
-	description: z.string(),
+	description: z.string().min(1),
 	image: z.string(),
 	year: z.number().int().max(new Date().getFullYear()),
 	volume: z.number(),

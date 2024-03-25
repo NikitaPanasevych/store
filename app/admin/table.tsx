@@ -28,7 +28,7 @@ import { useState } from 'react';
 import Button from '@/UI/button';
 import AppModal from '@/components/modal';
 import PostForm from '@/components/forms/add-post-form';
-import { ProductForm } from '@/components/forms/add-product-form/add-product-form';
+import { ProductForm } from '@/components/forms/add-product-form';
 import CategoriesForm from '@/components/forms/add-category-form';
 import removeItem from '@/lib/services/delete';
 import UpdatePostForm from '@/components/forms/update-post-form';
