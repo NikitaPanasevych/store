@@ -2,8 +2,10 @@
     height: 50rem;
     width: 30rem;
     cursor: pointer;
+    padding: 1rem;
     transition: all .3s ease-in-out;
-    border: 1px solid $dark;
+    border: 1px solid lighten($dark, 50%);
+    border-radius: 1rem;
     box-shadow: 0 0 2px rgba(0,0,0,.3);
     display: flex;
     flex-direction: column;
@@ -19,6 +21,13 @@
             height: 100%;
             object-fit: contain;
         }
+        &__categories{
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            gap: .5rem;
+            
+        }
     }
 
     &__description{
@@ -28,7 +37,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0;
         padding: 0rem 2rem;
         text-align: center;
 
@@ -43,6 +51,7 @@
             font-weight: 500;
             margin: .25rem 0;
         }
+        
     }
 
     &__price{
@@ -57,21 +66,6 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin: .25rem 0;
-        }
-        &__addbtn{
-            width: 100%;
-            height: 3rem;
-            background-color: $dark;
-            border: 1px solid $light;
-            color: $light;
-            cursor: pointer;
-            font-size: 1.4rem;
-            font-weight: 600;
-            transition: all .3s ease-in-out;
-            &:hover{
-                background-color: $primary;
-                
-            }
         }
     }
     &:hover{

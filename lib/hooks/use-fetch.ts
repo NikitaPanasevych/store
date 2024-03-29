@@ -9,7 +9,7 @@ function useFetch(slug: string, method?: string, body?: any) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(slug, {
+				const response = await fetch(`http://localhost:3000/api/shop/${slug}`, {
 					method: method,
 					body: JSON.stringify(body),
 					headers: {

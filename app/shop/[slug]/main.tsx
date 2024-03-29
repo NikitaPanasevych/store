@@ -42,6 +42,10 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 		volume,
 		year,
 		description,
+		alcohol,
+		categoryName,
+		countryName,
+		grapeName,
 	};
 
 	const addToCartHandler = (product: ProductProps) => {
@@ -53,6 +57,7 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 
 	return (
 		<>
+			{}
 			<div className={styles.Product}>
 				<div className={styles.Product__image}>
 					<img src={image} alt={name} />
@@ -74,7 +79,7 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 								<strong>{price} $</strong>
 							</p>
 						</div>
-						<CnButton size="lg" onClick={() => addToCartHandler(cartProduct)}>
+						<CnButton size="lg" className="rounded" onClick={() => addToCartHandler(cartProduct)}>
 							Add to Cart
 						</CnButton>
 					</div>
