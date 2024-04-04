@@ -6,6 +6,9 @@ export const getUserByEmail = async (email: string) => {
 			where: {
 				email,
 			},
+			include: {
+				cart: true,
+			},
 		});
 		return user;
 	} catch {
@@ -18,6 +21,13 @@ export const getUserById = async (id: string) => {
 		const user = await prisma.user.findUnique({
 			where: {
 				id,
+			},
+			include: {
+				cart: {
+					include: {
+						product: true,
+					},
+				},
 			},
 		});
 		return user;

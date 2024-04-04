@@ -27,11 +27,11 @@ export const {
 				return true;
 			}
 
-			const existingUser = await getUserById(user.id);
+			//const existingUser = await getUserById(user.id);
 
-			if (!existingUser?.emailVerified) {
+			/*if (!existingUser?.emailVerified) {
 				return false;
-			}
+			}*/
 
 			return true;
 		},
@@ -42,6 +42,10 @@ export const {
 			if (token.role && session.user) {
 				session.user.role = token.role as UserRole;
 			}
+			if (token.cart && session.user) {
+				session.user.cart = token.cart as any;
+			}
+
 			return session;
 		},
 		async jwt({ token }) {
@@ -53,8 +57,8 @@ export const {
 			if (!existingUser) {
 				return token;
 			}
-
 			token.role = existingUser.role;
+			token.cart = existingUser.cart;
 
 			return token;
 		},

@@ -6,16 +6,16 @@ import { FaUserCircle } from 'react-icons/fa';
 import MyDropdown from './newDropdown';
 
 const AuthBlock = async () => {
-	const session = true;
+	const session = await auth();
 
 	return (
 		<>
 			{!session ? (
-				<div className=" grid grid-flow-col gap-4 h-full w-full min-w-80">
-					<CnButton className="rounded-xl m-auto hover:text-active">
+				<div className=" grid grid-cols-2 h-full w-full min-w-80">
+					<CnButton className="rounded-xl text-xl  w-[8rem] m-auto hover:text-active">
 						<Link href="/auth/login">Login</Link>
 					</CnButton>
-					<CnButton className="rounded-xl m-auto border-2 hover:text-active" variant="secondary">
+					<CnButton className="rounded-xl text-xl m-auto w-[8rem] border-2 hover:text-active" variant="secondary">
 						<Link href="/auth/register">Register</Link>
 					</CnButton>
 				</div>

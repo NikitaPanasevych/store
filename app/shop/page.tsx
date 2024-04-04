@@ -10,7 +10,6 @@ import getProducts from '@/actions/getProducts';
 
 export default async function Shop() {
 	const products = await getProducts();
-	console.log(products);
 
 	return (
 		<section className={styles.shop}>

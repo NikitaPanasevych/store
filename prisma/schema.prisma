@@ -18,8 +18,8 @@ model Post {
 }
 
 model Product {
-  id           String  @id @default(cuid())
-  name         String  @unique
+  id           String     @id @default(cuid())
+  name         String     @unique
   price        Float
   image        String
   description  String
@@ -27,12 +27,14 @@ model Product {
   alcohol      Float
   quantity     Int
   volume       Float
-  category     Type    @relation(fields: [categoryName], references: [name])
+  category     Type       @relation(fields: [categoryName], references: [name])
   categoryName String
-  country      Country @relation(fields: [countryName], references: [name])
+  country      Country    @relation(fields: [countryName], references: [name])
   countryName  String
-  grape        Grape   @relation(fields: [grapeName], references: [name])
+  grape        Grape      @relation(fields: [grapeName], references: [name])
   grapeName    String
+  orders       Order[] // Add this line to establish the opposite relation
+  cartItems    CartItem[] // Add this line to establish the opposite relation
 }
 
 model Type {
@@ -80,14 +82,42 @@ enum UserRole {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   password      String?
   image         String?
-  role          UserRole  @default(USER)
+  role          UserRole   @default(USER)
   accounts      Account[]
+  cart          CartItem[]
+  orders        Order[]
+}
+
+model CartItem {
+  id           String  @id @default(cuid())
+  productId    String
+  product      Product @relation(fields: [productId], references: [id])
+  cartQuantity Int
+  user         User    @relation(fields: [userId], references: [id])
+  userId       String
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+  products  Product[]
+  total     Float
+  createdAt DateTime    @default(now())
+  status    OrderStatus
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
 }
 
 model VerificationToken {

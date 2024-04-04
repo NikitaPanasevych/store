@@ -1,17 +1,26 @@
-import React from 'react';
-import { CartProductProps } from '@/models/shop.product';
+'use client';
+
+import React, { use, useEffect, useState } from 'react';
 import { addToCart, removeFromCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
+import { CnButton } from '@/components/ui/button';
 
-const CartItem = ({ product }: { product: CartProductProps }) => {
-	const { name, cartQuantity, price, volume, image, id } = product;
+const CartItem = (props: any) => {
+	const { name, price, volume, image, id } = props.product;
+	const { cartQuantity, auth } = props;
 	const dispatch = useDispatch();
 
-	const addToCartHandler = (product: CartProductProps) => {
-		dispatch(addToCart(product));
+	const [cartQuantityState, setCartQuantityState] = useState(0);
+
+	useEffect(() => {
+		setCartQuantityState(cartQuantity);
+	}, [cartQuantity]);
+
+	const addToCartHandler = (product: any) => {
+		auth ? props.addToCartAction(props.product) : dispatch(addToCart(product));
 	};
 
-	const removeFromCartHandler = (product: CartProductProps) => {
+	const removeFromCartHandler = (product: any) => {
 		dispatch(removeFromCart(product));
 	};
 
@@ -23,28 +32,30 @@ const CartItem = ({ product }: { product: CartProductProps }) => {
 
 			<div className="ml-4 flex flex-1 flex-col">
 				<div>
-					<div className="flex justify-between text-3xl font-medium text-gray-900">
-						<h3>
-							<a href={'/shop/' + product.name.replace(/ /g, '-')}>{name}</a>
-						</h3>
-						<p className="">Quantity: {cartQuantity}</p>
-						<p className="ml-4">Price: {price} $</p>
-						<p className="ml-4">Total: {price * cartQuantity} $</p>
-						<div className="flex gap-16">
-							<button
-								onClick={() => removeFromCartHandler(product)}
+					<div className="grid grid-cols-6 gap-40 text-3xl font-medium text-gray-900">
+						<a className="my-auto col-span-2" href={'/shop/' + name.replace(/ /g, '-')}>
+							{name?.length > 22 ? name?.slice(0, 22) + '...' : name}
+						</a>
+						<p className="text-3xl text-gray-900 text-center my-auto col-span-1">${price}</p>
+						<div className="flex gap-16 col-span-2">
+							<CnButton
+								onClick={() => removeFromCartHandler(props.product)}
 								type="button"
-								className="font-medium text-active hover:text-indigo-500"
+								variant="ghost"
+								className="text-5xl text-active hover:text-indigo-500"
 							>
-								Remove
-							</button>
-							<button
-								onClick={() => addToCartHandler(product)}
+								-
+							</CnButton>
+							<p className="my-auto">{cartQuantityState}</p>
+							<CnButton
+								variant="ghost"
+								onClick={() => addToCartHandler(props.product)}
 								type="button"
-								className="font-medium text-green-400 hover:text-indigo-500"
+								className="text-5xl grid content-center text-green-400 hover:text-indigo-500"
 							>
-								Add
-							</button>
+								+
+							</CnButton>
+							<p className=" min-w-[10rem] m-auto col-span-1">${price * cartQuantityState}</p>
 						</div>
 					</div>
 					<p className=" text-2xl text-gray-500 mt-2">{volume} ml</p>

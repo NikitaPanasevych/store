@@ -18,7 +18,6 @@ const cartReducer = createSlice({
 	reducers: {
 		addToCart(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
-				// Check if window is defined (i.e., if running in a browser)
 				const existingProduct = state.find((e) => e.name === action.payload.name);
 				if (existingProduct) {
 					existingProduct.cartQuantity += 1;
@@ -30,7 +29,6 @@ const cartReducer = createSlice({
 		},
 		removeFromCart(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
-				// Check if window is defined (i.e., if running in a browser)
 				const existingProductIndex = state.findIndex((e) => e.name === action.payload.name);
 				if (existingProductIndex !== -1) {
 					if (state[existingProductIndex].cartQuantity > 1) {
@@ -42,6 +40,9 @@ const cartReducer = createSlice({
 				}
 			}
 		},
+		/*addToUserCart(state, action: PayloadAction<any>) {
+			addToCartAction(action.payload.product, action.payload.userId);
+		},*/
 	},
 });
 

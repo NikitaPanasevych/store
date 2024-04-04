@@ -7,6 +7,7 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
 import { generateToken } from '@/lib/tokens';
 import { getUserByEmail } from '@/lib/db-queries/getUser';
+import { sendVerificationEmail } from './sendVerificationEmail';
 
 export const login = async (values: z.infer<typeof loginSchema>) => {
 	const validatedFields = loginSchema.safeParse(values);
@@ -25,13 +26,13 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 		};
 	}
 
-	if (!existingUser.emailVerified) {
+	/*if (!existingUser.emailVerified) {
 		const token = await generateToken(existingUser.email);
-		//TODO send email confirmation
+		await sendVerificationEmail(token.email, token.token);
 		return {
 			success: 'Confirmation email sent!',
 		};
-	}
+	}*/
 
 	try {
 		await signIn('credentials', {
@@ -47,6 +48,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 						error: 'Invalid credentials',
 					};
 				default:
+					console.error(error);
 					return {
 						error: 'An error occurred',
 					};
