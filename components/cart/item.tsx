@@ -4,7 +4,7 @@ const Item = (props: any) => {
 	const { product } = props;
 
 	return (
-		<li key={product.id} className="flex py-6 w-[50rem]">
+		<li key={product.id} className="flex py-6">
 			<div className="h-40 w-40 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
 				<img src={product.image} alt={product.name} className="h-full w-full object-contain object-center" />
 			</div>

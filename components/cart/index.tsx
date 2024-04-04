@@ -1,17 +1,16 @@
 'use client';
 
 import React from 'react';
-import { RootState } from '@/redux/store';
-import { useSelector } from 'react-redux';
 import { CartProductProps } from '@/models/shop.product';
 import Item from './item';
 import Link from 'next/link';
+import useCartData from '@/lib/hooks/useCartData';
 
-export const Cart = (props: any) => {
-	const reduxCart = useSelector((state: RootState) => state.cartReducer);
+export const Cart = () => {
+	const { cart, loading, error } = useCartData();
 
 	return (
-		<div className="flex h-full flex-col overflow-y-scroll min-w-[35rem] bg-white shadow-xl">
+		<div className="flex h-full flex-col overflow-y-scroll w-[50rem] bg-white shadow-xl">
 			<div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
 				<div className="flex items-start justify-between">
 					<h1 className="text-3xl font-medium text-gray-900">Shopping cart</h1>
@@ -26,11 +25,9 @@ export const Cart = (props: any) => {
 				<div className="mt-8">
 					<div className="flow-root">
 						<ul role="list" className="-my-6 divide-y divide-gray-200">
-							{props.cart
-								? props.cart.map((product: any) => (
-										<Item key={product.id} product={product.product} qnt={product.cartQuantity} />
-								  ))
-								: reduxCart.map((product: any) => <Item key={product.id} product={product} />)}
+							{cart.map((product: any) => (
+								<Item key={product.id} product={product.product} qnt={product.cartQuantity} />
+							))}
 						</ul>
 					</div>
 				</div>
@@ -40,16 +37,7 @@ export const Cart = (props: any) => {
 				<div className="flex justify-between text-2xl font-medium text-gray-900">
 					<p>Subtotal</p>
 					<p>
-						$
-						{props.cart
-							? props.cart.reduce(
-									(acc: number, product: any) => acc + product.product.price * product.cartQuantity,
-									0
-							  )
-							: reduxCart.reduce(
-									(acc: number, product: CartProductProps) => acc + product.price * product.cartQuantity,
-									0
-							  )}
+						${cart.reduce((acc: number, product: any) => acc + product.product.price * product.cartQuantity, 0)}
 					</p>
 				</div>
 				<p className="mt-0.5 text-lg text-gray-500">Shipping and taxes calculated at checkout.</p>

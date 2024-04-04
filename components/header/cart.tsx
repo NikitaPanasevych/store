@@ -7,17 +7,14 @@ import CartQuantity from './cartQuantity';
 import { auth } from '@/auth';
 
 const HeaderCart = async () => {
-	const session = await auth();
-	const cart = session?.user.cart;
-
 	return (
 		<>
 			<div>
 				<MyDrawer anchor="right" buttonChildren={<BsFillBagFill />}>
-					<Cart cart={cart} />
+					<Cart />
 				</MyDrawer>
 			</div>
-			<CartQuantity cart={cart} />
+			<CartQuantity />
 		</>
 	);
 };

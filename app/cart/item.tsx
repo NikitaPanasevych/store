@@ -1,28 +1,14 @@
 'use client';
 
-import React, { use, useEffect, useState } from 'react';
+import React from 'react';
 import { addToCart, removeFromCart } from '@/redux/features/cartSlice';
 import { useDispatch } from 'react-redux';
 import { CnButton } from '@/components/ui/button';
+import useCartData from '@/lib/hooks/useCartData';
+import { ProductCardProps } from '../shop/product';
 
 const CartItem = (props: any) => {
-	const { name, price, volume, image, id } = props.product;
-	const { cartQuantity, auth } = props;
-	const dispatch = useDispatch();
-
-	const [cartQuantityState, setCartQuantityState] = useState(0);
-
-	useEffect(() => {
-		setCartQuantityState(cartQuantity);
-	}, [cartQuantity]);
-
-	const addToCartHandler = (product: any) => {
-		auth ? props.addToCartAction(props.product) : dispatch(addToCart(product));
-	};
-
-	const removeFromCartHandler = (product: any) => {
-		dispatch(removeFromCart(product));
-	};
+	const { id, name, price, volume, image } = props.product;
 
 	return (
 		<li key={id} className="flex py-6 ">
@@ -46,7 +32,7 @@ const CartItem = (props: any) => {
 							>
 								-
 							</CnButton>
-							<p className="my-auto">{cartQuantityState}</p>
+							<p className="my-auto">{props.cartQuantity}</p>
 							<CnButton
 								variant="ghost"
 								onClick={() => addToCartHandler(props.product)}
@@ -55,7 +41,7 @@ const CartItem = (props: any) => {
 							>
 								+
 							</CnButton>
-							<p className=" min-w-[10rem] m-auto col-span-1">${price * cartQuantityState}</p>
+							<p className=" min-w-[10rem] m-auto col-span-1">${price * props.cartQuantity}</p>
 						</div>
 					</div>
 					<p className=" text-2xl text-gray-500 mt-2">{volume} ml</p>

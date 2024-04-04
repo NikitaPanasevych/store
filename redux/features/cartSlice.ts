@@ -18,18 +18,18 @@ const cartReducer = createSlice({
 	reducers: {
 		addToCart(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
-				const existingProduct = state.find((e) => e.name === action.payload.name);
+				const existingProduct = state.find((e) => e.product.name === action.payload.name);
 				if (existingProduct) {
 					existingProduct.cartQuantity += 1;
 				} else {
-					state.push({ ...action.payload, cartQuantity: 1 });
+					state.push({ product: { ...action.payload }, cartQuantity: 1 });
 				}
 				localStorage.setItem('cart', JSON.stringify(state));
 			}
 		},
 		removeFromCart(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
-				const existingProductIndex = state.findIndex((e) => e.name === action.payload.name);
+				const existingProductIndex = state.findIndex((e) => e.product.name === action.payload.name);
 				if (existingProductIndex !== -1) {
 					if (state[existingProductIndex].cartQuantity > 1) {
 						state[existingProductIndex].cartQuantity -= 1;
@@ -40,9 +40,6 @@ const cartReducer = createSlice({
 				}
 			}
 		},
-		/*addToUserCart(state, action: PayloadAction<any>) {
-			addToCartAction(action.payload.product, action.payload.userId);
-		},*/
 	},
 });
 

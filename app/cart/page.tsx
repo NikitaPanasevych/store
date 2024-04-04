@@ -9,14 +9,6 @@ import { ProductProps } from '@/models/shop.product';
 import addToCart from '@/actions/addToCart';
 
 const Cart = async () => {
-	const session = await auth();
-	const cart = session?.user.cart;
-
-	const addToCartAction = async (product: ProductProps) => {
-		'use server';
-		await addToCart(product, session?.user.id);
-	};
-
 	return (
 		<main className={styles.cart}>
 			<h1 className={styles.cart__title}>Your Cart</h1>
@@ -29,11 +21,11 @@ const Cart = async () => {
 						<p className="col-span-1">Total</p>
 					</li>
 
-					<Table cart={cart} addToCartAction={addToCartAction} />
+					<Table />
 				</ul>
 				<div className=" grid h-[400px] bg-light shadow-2xl w-[400px] col-span-1 rounded-xl p-14 pb-8 border-2">
 					<h2 className=" text-4xl font-bold text-center">Order Summary</h2>
-					<Total cart={cart} />
+					<Total />
 					<Link href="/checkout">
 						<CnButton className="w-full">Checkout</CnButton>
 					</Link>
