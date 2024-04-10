@@ -1,26 +1,20 @@
 'use client';
 
 import { ProductProps } from '@/models/shop.product';
-import { addToCart } from '@/redux/features/cartSlice';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
 import styles from './product.module.scss';
 import { CnButton } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import addToCartServerAction from '@/actions/addToCart';
 import { useToast } from '@/components/ui/use-toast';
 
 export interface ProductCardProps {
 	product: ProductProps;
-	session?: any;
-	addToCartAction?: (product: ProductProps, userId: any) => void;
 }
 
 export const Product = (props: ProductCardProps) => {
 	const { name, quantity, price, image, volume, categoryName, countryName, grapeName } = props.product;
 	const { toast } = useToast();
-	const dispatch = useDispatch();
-
-	const { session } = props;
 
 	return (
 		<Link href={'/shop/' + name.replace(/ /g, '-')}>
@@ -46,11 +40,8 @@ export const Product = (props: ProductCardProps) => {
 						className="rounded bg-dark hover:text-active text-white w-full mt-1"
 						onClick={(event) => {
 							event.preventDefault();
-							!session
-								? dispatch(addToCart(props.product))
-								: props.addToCartAction
-								? props.addToCartAction(props.product, session.user.id)
-								: null;
+							toast({ title: 'Item added to cart' });
+							addToCartServerAction(props.product);
 						}}
 					>
 						Add to Cart

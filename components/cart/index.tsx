@@ -1,13 +1,18 @@
-'use client';
-
-import React from 'react';
 import { CartProductProps } from '@/models/shop.product';
-import Item from './item';
 import Link from 'next/link';
-import useCartData from '@/lib/hooks/useCartData';
+import getCartServerAction from '@/actions/getCart';
+import { auth } from '@/auth';
+import Listing from './listing';
+import { Suspense } from 'react';
 
-export const Cart = () => {
-	const { cart, loading, error } = useCartData();
+export const Cart = async () => {
+	let cart: CartProductProps[] = [];
+	const session = await auth();
+	if (!session) {
+		cart = [];
+	} else {
+		cart = await getCartServerAction(session.user.id);
+	}
 
 	return (
 		<div className="flex h-full flex-col overflow-y-scroll w-[50rem] bg-white shadow-xl">
@@ -25,9 +30,9 @@ export const Cart = () => {
 				<div className="mt-8">
 					<div className="flow-root">
 						<ul role="list" className="-my-6 divide-y divide-gray-200">
-							{cart.map((product: any) => (
-								<Item key={product.id} product={product.product} qnt={product.cartQuantity} />
-							))}
+							<Suspense fallback={<div>Loading...</div>}>
+								<Listing cart={cart} />
+							</Suspense>
 						</ul>
 					</div>
 				</div>

@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma';
 
-const getCartAction = async (userId: string | undefined) => {
+const getCartServerAction = async (userId: string | undefined) => {
 	const cart = await prisma.cartItem.findMany({
 		where: {
 			userId: userId,
@@ -14,4 +14,4 @@ const getCartAction = async (userId: string | undefined) => {
 	return cart;
 };
 
-export default getCartAction;
+export default getCartServerAction;

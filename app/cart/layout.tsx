@@ -2,6 +2,7 @@ import React from 'react';
 import Search from '@/components/search';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { Toaster } from '@/components/ui/toaster';
 
 const CartLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
@@ -9,6 +10,7 @@ const CartLayout = ({ children }: { children: React.ReactNode }) => {
 			<Search />
 			<Header />
 			{children}
+			<Toaster />
 			<Footer />
 		</>
 	);

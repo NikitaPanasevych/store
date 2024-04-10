@@ -1,23 +1,22 @@
 'use client';
 
 import styles from './styles.module.scss';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '@/redux/features/cartSlice';
 import { ProductProps } from '@/models/shop.product';
 import { CnButton } from '@/components/ui/button';
 import useFetch from '@/lib/hooks/use-fetch';
 import { FallingLines } from 'react-loader-spinner';
 import Fy from './fy';
+import addToCartServerAction from '@/actions/addToCart';
+import { useToast } from '@/components/ui/use-toast';
 
 interface ProductPageMainProps {
 	slug: string;
-	toast: (options: { title: string }) => void;
 }
 
 export default function ProductPageMain(props: ProductPageMainProps) {
-	const { slug, toast } = props;
-	const dispatch = useDispatch();
+	const { slug } = props;
 	const { data, loading, error } = useFetch(slug);
+	const { toast } = useToast();
 
 	if (loading) {
 		return (
@@ -34,30 +33,8 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 	const { name, description, price, image, year, alcohol, quantity, volume, categoryName, countryName, grapeName } =
 		data;
 
-	const cartProduct: ProductProps = {
-		name,
-		quantity,
-		price,
-		image,
-		volume,
-		year,
-		description,
-		alcohol,
-		categoryName,
-		countryName,
-		grapeName,
-	};
-
-	const addToCartHandler = (product: ProductProps) => {
-		dispatch(addToCart(product));
-		toast({
-			title: 'Product added to cart',
-		});
-	};
-
 	return (
 		<>
-			{}
 			<div className={styles.Product}>
 				<div className={styles.Product__image}>
 					<img src={image} alt={name} />
@@ -79,7 +56,14 @@ export default function ProductPageMain(props: ProductPageMainProps) {
 								<strong>{price} $</strong>
 							</p>
 						</div>
-						<CnButton size="lg" className="rounded" onClick={() => addToCartHandler(cartProduct)}>
+						<CnButton
+							size="lg"
+							className="rounded"
+							onClick={() => {
+								addToCartServerAction(data);
+								toast({ title: 'Item added to cart' });
+							}}
+						>
 							Add to Cart
 						</CnButton>
 					</div>

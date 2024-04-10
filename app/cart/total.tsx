@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import useCartData from '@/lib/hooks/useCartData';
+import useCart from '@/lib/hooks/useCart';
 
-const Total = () => {
-	const { cart, loading, error } = useCartData();
+const Total = (props: any) => {
+	const { cart } = props;
 
 	return (
 		<ul className=" divide-y divide-gray-200 ">
 			<li className="py-8">
 				<p className=" text-3xl">
-					Subtotal: {cart.reduce((acc, item) => acc + item.product.price * item.cartQuantity, 0)} $
+					Subtotal: {cart ? cart.reduce((acc, item) => acc + item.product.price * item.cartQuantity, 0) : 0} $
 				</p>
 			</li>
 			<li className="py-8">
@@ -18,8 +18,7 @@ const Total = () => {
 			</li>
 			<li className="py-8">
 				<p className=" text-3xl">
-					Total:
-					{cart.reduce((acc, item) => acc + item.product.price * item.cartQuantity, 0)} $
+					Total: {cart ? cart.reduce((acc, item) => acc + item.product.price * item.cartQuantity, 0) : 0} $
 				</p>
 			</li>
 		</ul>

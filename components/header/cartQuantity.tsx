@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import useCartData from '@/lib/hooks/useCartData';
+import useCart from '@/lib/hooks/useCart';
+import { CartProductProps } from '@/models/shop.product';
 
-const CartQuantity = () => {
-	const { cart, loading, error } = useCartData();
+const CartQuantity = (props: { cart: CartProductProps[] }) => {
+	const { cart } = props;
 
 	return (
 		<span className={styles.header__right__qty}>

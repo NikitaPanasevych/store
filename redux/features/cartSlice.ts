@@ -5,6 +5,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 const getInitialCartState = (): CartProductProps[] => {
 	if (typeof window !== 'undefined') {
 		// Check if window is defined (i.e., if running in a browser)
+		localStorage.setItem('cart', JSON.stringify([]));
 		const savedCartState = localStorage.getItem('cart');
 		return savedCartState ? JSON.parse(savedCartState) : [];
 	} else {
@@ -16,9 +17,9 @@ const cartReducer = createSlice({
 	name: 'cart',
 	initialState: getInitialCartState(),
 	reducers: {
-		addToCart(state, action: PayloadAction<ProductProps>) {
+		addToCartAction(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
-				const existingProduct = state.find((e) => e.product.name === action.payload.name);
+				const existingProduct = state.find((e: CartProductProps) => e.product.name === action.payload.name);
 				if (existingProduct) {
 					existingProduct.cartQuantity += 1;
 				} else {
@@ -27,7 +28,7 @@ const cartReducer = createSlice({
 				localStorage.setItem('cart', JSON.stringify(state));
 			}
 		},
-		removeFromCart(state, action: PayloadAction<ProductProps>) {
+		removeFromCartAction(state, action: PayloadAction<ProductProps>) {
 			if (typeof window !== 'undefined') {
 				const existingProductIndex = state.findIndex((e) => e.product.name === action.payload.name);
 				if (existingProductIndex !== -1) {
@@ -43,5 +44,5 @@ const cartReducer = createSlice({
 	},
 });
 
-export const { addToCart, removeFromCart } = cartReducer.actions;
+export const { addToCartAction, removeFromCartAction } = cartReducer.actions;
 export default cartReducer.reducer;

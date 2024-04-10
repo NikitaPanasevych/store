@@ -4,7 +4,7 @@ import { auth } from '@/auth';
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
-export default async function addToCartServerAction(product: any) {
+const removeFromCartServerAction = async (product: any) => {
 	const session = await auth();
 	if (!session) {
 		return {
@@ -17,18 +17,25 @@ export default async function addToCartServerAction(product: any) {
 			productId: product.id,
 		},
 	});
-	if (cartItem) {
+	if (!cartItem) {
+		return {
+			error: 'Item not found in cart',
+		};
+	}
+	if (cartItem.cartQuantity > 1) {
 		try {
 			await prisma.cartItem.update({
 				where: {
 					id: cartItem.id,
 				},
 				data: {
-					cartQuantity: cartItem.cartQuantity + 1,
+					cartQuantity: cartItem.cartQuantity - 1,
 				},
 			});
 			revalidatePath('/cart');
-			return;
+			return {
+				success: 'Item added to cart',
+			};
 		} catch (e) {
 			console.log(e);
 			return {
@@ -37,20 +44,21 @@ export default async function addToCartServerAction(product: any) {
 		}
 	}
 	try {
-		await prisma.cartItem.create({
-			data: {
-				userId: session.user.id,
-				productId: product.id,
-				cartQuantity: 1,
+		await prisma.cartItem.delete({
+			where: {
+				id: cartItem.id,
 			},
 		});
-
 		revalidatePath('/cart');
-		return;
+		return {
+			success: 'Item removed from cart',
+		};
 	} catch (e) {
 		console.log(e);
 		return {
 			error: e,
 		};
 	}
-}
+};
+
+export default removeFromCartServerAction;

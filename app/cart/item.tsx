@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import { addToCart, removeFromCart } from '@/redux/features/cartSlice';
-import { useDispatch } from 'react-redux';
 import { CnButton } from '@/components/ui/button';
-import useCartData from '@/lib/hooks/useCartData';
-import { ProductCardProps } from '../shop/product';
+import addToCartServerAction from '@/actions/addToCart';
+import removeFromCartServerAction from '@/actions/removeFromCart';
+import { useToast } from '@/components/ui/use-toast';
 
 const CartItem = (props: any) => {
 	const { id, name, price, volume, image } = props.product;
+	const { toast } = useToast();
 
 	return (
 		<li key={id} className="flex py-6 ">
@@ -25,7 +25,10 @@ const CartItem = (props: any) => {
 						<p className="text-3xl text-gray-900 text-center my-auto col-span-1">${price}</p>
 						<div className="flex gap-16 col-span-2">
 							<CnButton
-								onClick={() => removeFromCartHandler(props.product)}
+								onClick={() => {
+									removeFromCartServerAction(props.product);
+									toast({ title: 'Item removed from cart' });
+								}}
 								type="button"
 								variant="ghost"
 								className="text-5xl text-active hover:text-indigo-500"
@@ -35,7 +38,10 @@ const CartItem = (props: any) => {
 							<p className="my-auto">{props.cartQuantity}</p>
 							<CnButton
 								variant="ghost"
-								onClick={() => addToCartHandler(props.product)}
+								onClick={() => {
+									addToCartServerAction(props.product);
+									toast({ title: 'Item added to cart' });
+								}}
 								type="button"
 								className="text-5xl grid content-center text-green-400 hover:text-indigo-500"
 							>
